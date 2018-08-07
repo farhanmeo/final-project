@@ -1,0 +1,785 @@
+
+  
+        <!-- Right Side Content / End -->
+        <div class="right-side">
+          <div class="header-widget">
+            <a href="#sign-in-dialog" class="sign-in popup-with-zoom-anim"><i class="sl sl-icon-login"></i> Sign In</a>
+            <a href="#dashboard-add-listing.html" class="button border with-icon">Add Listing <i class="sl sl-icon-plus"></i></a>
+          </div>
+        </div>
+        <!-- Right Side Content / End -->
+        
+        <!-- Sign In Popup -->
+        <div id="sign-in-dialog" class="zoom-anim-dialog mfp-hide">
+  
+          <div class="small-dialog-header">
+            <h3>Sign In</h3>
+          </div>
+  
+          <!--Tabs -->
+          <div class="sign-in-form style-1">
+  
+            <ul class="tabs-nav">
+              <li class=""><a href="#tab1">Log In</a></li>
+              <li><a href="#tab2">Register</a></li>
+            </ul>
+  
+            <div class="tabs-container alt">
+  
+              <!-- Login -->
+              <div class="tab-content" id="tab1" style="display: none;">
+                <form method="post" class="login">
+  
+                  <p class="form-row form-row-wide">
+                    <label for="username">Username:
+                      <i class="im im-icon-Male"></i>
+                      <input type="text" class="input-text" name="username" value="" />
+                    </label>
+                  </p>
+  
+                  <p class="form-row form-row-wide">
+                    <label for="password">Password:
+                      <i class="im im-icon-Lock-2"></i>
+                      <input class="input-text" type="password" name="password"/>
+                    </label>
+                    <span class="lost_password">
+                      <a href="#" >Lost Your Password?</a>
+                    </span>
+                  </p>
+  
+                  <div class="form-row">
+                    <input type="submit" class="button border margin-top-5" name="login" value="Login" />
+                    <div class="checkboxes margin-top-10">
+                      <input  type="checkbox" name="check">
+                      <label for="remember-me">Remember Me</label>
+                    </div>
+                  </div>
+                  
+                </form>
+              </div>
+  
+              <!-- Register -->
+              <div class="tab-content" id="tab2" style="display: none;">
+  
+                <form method="post" class="register">
+                  
+                <p class="form-row form-row-wide">
+                  <label for="username2">Username:
+                    <i class="im im-icon-Male"></i>
+                    <!-- <input type="text" class="input-text" name="username" value="" /> -->
+                    <input type="text" id="sender-username" class="input-text" name="username" placeholder="Username" [(ngModel)]="username" [ngModelOptions]="{standalone: true}">
+
+                  </label>
+                </p>
+                  
+                <p class="form-row form-row-wide">
+                  <label for="email">Email Address:
+                    <i class="im im-icon-Mail"></i>
+                    <!-- <input type="text" class="input-text" name="email" value="" /> -->
+                    <input type="text" id="sender-email" class="input-text" name="email" placeholder="Email Address" [(ngModel)]="email" [ngModelOptions]="{standalone: true}">
+                  </label>
+                </p>
+  
+                <p class="form-row form-row-wide">
+                  <label for="password">Password:
+                    <i class="im im-icon-Lock-2"></i>
+                    <!-- <input class="input-text" type="password" name="password" /> -->
+                    <input type="password" class="input-text" name="password" placeholder="Password" [(ngModel)]="password" [ngModelOptions]="{standalone: true}">
+                  </label>
+                </p>
+  
+                <p class="form-row form-row-wide">
+                  <label for="password2">Repeat Password:
+                    <i class="im im-icon-Lock-2"></i>
+                    <!-- <input class="input-text" type="password" name="password2"/> -->
+                    <input id="retypePassword" type="password" class="input-text" name="password2" placeholder="Retype Password" [(ngModel)]="retypePassword" [ngModelOptions]="{standalone: true}">
+
+                  </label>
+                </p>
+                <button  class="button border fw margin-top-10" (click)="Register()">Register</button>  
+                 
+                </form>
+              </div>
+  
+            </div>
+          </div>
+        </div>
+
+
+        <!-- Sign In Popup / End -->
+        <h2 class="title-2">
+          Post A Free Classified Ad
+        </h2>
+        <form [formGroup]="postAdd" class="form-ad" novalidate>
+          <div class="form-group">
+            <label class="control-label" >Category</label>
+            <select name="category-group" id="category-group" formControlName="Category" class="form-control" #catagory>
+                  <option value="0" selected="selected"></option>
+                  <option value="Vehicles" style="background-color:#E9E9E9;font-weight:bold;" disabled="disabled"> - Vehicles - </option>
+<option value="Cars"> Cars </option>
+<option value="Commercial vehicles"> Commercial vehicles </option>
+<option value="Motorcycles"> Motorcycles </option>
+<option value="Motorcycle Equipment"> Car &amp; Motorcycle Equipment </option>
+<option value="Boats"> Boats </option>
+<option value="Vehicles"> Other Vehicles </option>
+<option value="House" style="background-color:#E9E9E9;font-weight:bold;" disabled="disabled"> - House and Children - </option>
+<option value="Appliances"> Appliances </option>
+<option value="Inside"> Inside </option>
+<option value="Games"> Games and Clothing </option>
+<option value="Garden"> Garden </option>
+<option value="Multimedia" style="background-color:#E9E9E9;font-weight:bold;" disabled="disabled"> - Multimedia - </option>
+<option value="Telephony"> Telephony </option>
+<option value="Image"> Image and sound </option>
+<option value="Computers"> Computers and Accessories </option>
+<option value="Video"> Video games and consoles </option>
+<option value="Real" style="background-color:#E9E9E9;font-weight:bold;" disabled="disabled"> - Real Estate - </option>
+<option value="Apartment"> Apartment </option>
+<option value="Home"> Home </option>
+<option value="Vacation"> Vacation Rentals </option>
+<option value="Commercial"> Commercial offices and local </option>
+<option value="Grounds"> Grounds </option>
+<option value="Houseshares"> Houseshares </option>
+<option value="Other real estate"> Other real estate </option>
+<option value="Services" style="background-color:#E9E9E9;font-weight:bold;" disabled="disabled"> - Services - </option>
+<option value="Jobs"> Jobs </option>
+<option value="Job application"> Job application </option>
+<option value="Services"> Services </option>
+<option value="Price"> Price </option>
+<option value="Business"> Business and goodwill </option>
+<option value="Professional"> Professional equipment </option>
+<option value="dropoff" style="background-color:#E9E9E9;font-weight:bold;" disabled="disabled"> - Extra - </option>
+<option value="Other"> Other </option>
+</select>
+</div>
+<div class="form-group">
+<label class="control-label">Ad title</label>
+<input name="Adtitle" placeholder="Ad title" formControlName="title" class="form-control input-md" type="text"
+ #adTitle>
+<span class="help-block">A great title needs at least 60 characters. </span>
+</div>
+<div class="form-group">
+<label class="control-label" for="textarea">Describe ad </label>
+<textarea class="form-control" formControlName="Description" id="textarea" name="textarea">Describe what makes your ad unique </textarea>
+</div>
+<div class="form-group">
+<label class="control-label" for="textarea">Price</label>
+<div class="form-inline">
+  <div class="form-group">
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="price" formControlName="price">
+      <span class="input-group-addon addon">$</span>
+    </div>
+  </div>
+  <div class="form-group">
+    <p class="form-control-static" style="padding: 5px 10px;">or</p>
+</div>
+<div class="form-group">
+<!--<select class="form-control">
+                      <option value="0" selected="selected">Select alternative pricing</option>
+                      <option value="1">By deal</option>
+                     <option value="2">By offer</option>
+                      <option value="3">Exchange</option>
+                    </select>-->
+</div>
+</div>
+</div>
+<h2 class="title-2">
+Classified Picture
+</h2>
+<div class="form-group">
+<label class="control-label">Select images</label>
+<div class="mb15">
+  <div class="input-group ">
+    <div tabindex="-1" class="form-control file-caption">
+      <div style="width: 239px;" class="file-caption-name"></div>
+</div>
+<div class="input-group-btn">
+<button type="button" class="btn btn-danger fileinput-remove fileinput-remove-button"><i class="glyphicon glyphicon-ban-circle"></i> Remove</button>
+<button type="submit" class="btn btn-success kv-fileinput-upload"><i class="glyphicon glyphicon-upload"></i> Upload</button>
+<div class="btn btn-primary btn-file">
+  <i class="glyphicon glyphicon-folder-open"></i> &nbsp;Browse …
+  <input id="input-upload-img1" class="file" data-preview-file-type="text" type="file" formControlName="image">
+</div>
+</div>
+</div>
+</div>
+<div class="mb15">
+<div class="input-group ">
+  <div tabindex="-1" class="form-control file-caption">
+    <div style="width: 239.12px;" class="file-caption-name"></div>
+</div>
+<div class="input-group-btn">
+<button type="button" class="btn btn-danger fileinput-remove fileinput-remove-button"><i class="glyphicon glyphicon-ban-circle"></i> Remove</button>
+<button type="submit" class="btn btn-success kv-fileinput-upload"><i class="glyphicon glyphicon-upload"></i> Upload</button>
+<div class="btn btn-primary btn-file">
+  <i class="glyphicon glyphicon-folder-open"></i> &nbsp;Browse …
+  <input id="input-upload-img2" class="file" data-preview-file-type="text" type="file">
+</div>
+</div>
+</div>
+</div>
+<div class="mb15">
+<div class="input-group ">
+  <div tabindex="-1" class="form-control file-caption">
+    <div style="width: 239.12px;" class="file-caption-name"></div>
+</div>
+<div class="input-group-btn">
+<button type="button" class="btn btn-danger fileinput-remove fileinput-remove-button"><i class="glyphicon glyphicon-ban-circle"></i> Remove</button>
+<button type="submit" class="btn btn-success kv-fileinput-upload"><i class="glyphicon glyphicon-upload"></i> Upload</button>
+<div class="btn btn-primary btn-file">
+  <i class="glyphicon glyphicon-folder-open"></i> &nbsp;Browse …
+  <input id="input-upload-img3" class="file" data-preview-file-type="text" type="file">
+</div>
+</div>
+</div>
+</div>
+<div class="mb15">
+<div class="input-group ">
+  <div tabindex="-1" class="form-control file-caption">
+    <div style="width: 239.12px;" class="file-caption-name"></div>
+</div>
+<div class="input-group-btn">
+<button type="button" class="btn btn-danger fileinput-remove fileinput-remove-button"><i class="glyphicon glyphicon-ban-circle"></i> Remove</button>
+<button type="submit" class="btn btn-success kv-fileinput-upload"><i class="glyphicon glyphicon-upload"></i> Upload</button>
+<div class="btn btn-primary btn-file">
+  <i class="glyphicon glyphicon-folder-open"></i> &nbsp;Browse …
+  <input id="input-upload-img4" class="file" data-preview-file-type="text" type="file">
+</div>
+</div>
+</div>
+</div>
+<div class="mb15">
+<div class="input-group ">
+  <div tabindex="-1" class="form-control file-caption">
+    <div style="width: 239.12px;" class="file-caption-name"></div>
+</div>
+<div class="input-group-btn">
+<button type="button" class="btn btn-danger fileinput-remove fileinput-remove-button"><i class="glyphicon glyphicon-ban-circle"></i> Remove</button>
+<button type="submit" class="btn btn-success kv-fileinput-upload"><i class="glyphicon glyphicon-upload"></i> Upload</button>
+<div class="btn btn-primary btn-file">
+  <i class="glyphicon glyphicon-folder-open"></i> &nbsp;Browse …
+  <input id="input-upload-img5" class="file" data-preview-file-type="text" type="file">
+</div>
+</div>
+</div>
+</div>
+<p class="help-block">Add up to 5 photos. Use a real image of your product, not catalogs.</p>
+</div>
+<h2 class="title-2">
+Your personal details
+</h2>
+<div class="form-group">
+<label class="control-label" for="textarea">Name</label>
+<input type="text" class="form-control" placeholder="Your Name" formControlName="name" />
+</div>
+<div class="form-group">
+<label class="control-label" for="textarea">Email</label>
+<input type="text" class="form-control" placeholder="Your Email" formControlName="email" />
+</div>
+<div class="form-group">
+<label class="control-label" for="textarea">Phone Number</label>
+<input type="text" class="form-control" placeholder="Phone Number" formControlName="phone" />
+<div class="checkbox">
+  <label><input type="checkbox"> <small>Hide the phone number on this ads.</small></label>
+</div>
+</div>
+<div class="form-group">
+<label class="control-label" for="textarea">Password</label>
+<input type="password" class="form-control" placeholder="Password" formControlName="password" />
+</div>
+<div class="form-group">
+<label class="control-label" for="seller-Location">Location</label>
+<select id="Location" name="Location" class="form-control">
+                  <option value="1">Option one</option>
+                  <option value="2">Option two</option>
+                </select>
+</div>
+<div class="form-group">
+<div class="well">
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sit amet porta eros, eget facilisis arcu. Duis condimentum
+    fermentum enim, ac rutrum erat venenatis vel. Morbi pharetra viverra faucibus.</p>
+  <div class="checkbox">
+    <label><input checked="checked" type="checkbox"> Sign Up for Newsletter</label>
+  </div>
+  <div class="checkbox">
+    <label><input type="checkbox"> I agree to the <a href="#">Terms of Use</a></label>
+  </div>
+  <button routerLink="/dashboard" type="button"  class="btn btn-common" (click)="addUsersData()"> Submit</button>
+  
+
+</div>
+
+ 
+
+
+</div>
+</form>
+
+<!--original booking-->
+<!--original booking-->
+<!--original booking-->
+<!--original booking-->
+<!--original booking-->
+
+<form [formGroup]="postAdd" class="form-ad" novalidate>
+        
+<div class="col-lg-12">
+
+  <div id="add-listing">
+
+    <!-- Section -->
+    <div class="add-listing-section">
+
+      <!-- Headline -->
+      <div class="add-listing-headline">
+        <h3><i class="sl sl-icon-doc"></i> Basic Informations</h3>
+      </div>
+
+      <!-- Title -->
+      <div class="row with-forms">
+        <div class="col-md-12">
+          <h5>Listing Title <i class="tip" data-tip-content="Name of your business"></i></h5>
+          <!-- <input class="search-field" type="text" value=""/> -->
+          <input name="Adtitle" placeholder="Ad title" formControlName="title" class="form-control input-md" type="text"
+ #adTitle>
+        </div>
+      </div>
+
+      <!-- Row -->
+      <div class="row with-forms">
+
+        <!-- Status -->
+        <div class="col-md-6">
+          <h5>Category</h5>
+          <select name="category-group" id="category-group" formControlName="Category" class="form-control" #catagory>
+          <!-- <select class="chosen-select-no-single" > -->
+            <option label="blank">Select Category</option>	
+            <option>Eat & Drink</option>
+            <option>Shops</option>
+            <option>Hotels</option>
+            <option>Restaurants</option>
+            <option>Fitness</option>
+            <option>Events</option>
+          </select>
+        </div>
+
+        <!-- Type -->
+        <div class="col-md-6">
+          <h5>Keywords <i class="tip" data-tip-content="Maximum of 15 keywords related with your business"></i></h5>
+          <!-- <input type="text" placeholder="Keywords should be separated by commas"> -->
+          <input type="text" class="form-control" placeholder="keywords" formControlName="keywords" />
+
+        </div>
+
+      </div>
+      <!-- Row / End -->
+
+    </div>
+    <!-- Section / End -->
+
+    <!-- Section -->
+    <div class="add-listing-section margin-top-45">
+
+      <!-- Headline -->
+      <div class="add-listing-headline">
+        <h3><i class="sl sl-icon-location"></i> Location</h3>
+      </div>
+
+      <div class="submit-section">
+
+        <!-- Row -->
+        <div class="row with-forms">
+
+          <!-- City -->
+          <div class="col-md-6">
+            <h5>City</h5>
+            <select class="chosen-select-no-single" >
+              <option label="blank">Select City</option>	
+              <option>Karachi</option>
+              <option>Hydrabad</option>
+              <option>Lahore</option>
+              <option>Islamabad</option>
+              <option>Peshawar</option>
+              <option>Sialkot</option>
+              <option>Multan</option>
+            </select>
+          </div>
+
+          <!-- Address -->
+          <div class="col-md-6">
+            <h5>Address</h5>
+            <input type="text" placeholder="e.g. 964 School Street">
+          </div>
+
+          <!-- City 
+          <div class="col-md-6">
+            <h5>State</h5>
+            <input type="text">
+          </div>
+          -->
+          <!-- Zip-Code 
+          <div class="col-md-6">
+            <h5>Zip-Code</h5>
+            <input type="text">
+          </div>
+          -->
+        </div>
+        <!-- Row / End -->
+
+      </div>
+    </div>
+    <!-- Section / End -->
+
+
+    <input type="file" (change)="featuredPhotoSelected($event)">
+    <button type="button" (click)="onUpload()">Upload</button>
+    <!-- Section -->
+    <div class="add-listing-section margin-top-45">
+
+      <!-- Headline -->
+      <div class="add-listing-headline">
+        <h3><i class="sl sl-icon-picture"></i> Gallery</h3>
+      </div>
+
+      <!-- Dropzone -->
+      <div class="submit-section">
+        <form action="/file-upload" class="dropzone" ></form>
+      </div>
+
+    </div>
+    <!-- Section / End -->
+
+
+    <!-- Section -->
+    <div class="add-listing-section margin-top-45">
+
+      <!-- Headline -->
+      <div class="add-listing-headline">
+        <h3><i class="sl sl-icon-docs"></i> Details</h3>
+      </div>
+
+      <!-- Description -->
+      <div class="form">
+        <h5>Description</h5>
+        <!-- <textarea class="WYSIWYG" name="summary" cols="40" rows="3" id="summary" spellcheck="true"></textarea> -->
+        <textarea class="form-control" formControlName="Description" id="textarea" name="textarea">Describe what makes your ad unique </textarea>
+
+      </div>
+
+      <!-- Row -->
+      <div class="row with-forms">
+
+        <!-- Phone -->
+        <div class="col-md-4">
+          <h5>Phone <span>(optional)</span></h5>
+          <!-- <input type="text"> -->
+          <input type="text" class="form-control" placeholder="Phone Number" formControlName="phone" />
+
+        </div>
+
+        <!-- Website 
+        <div class="col-md-4">
+          <h5>Website <span>(optional)</span></h5>
+          <input type="text">
+        </div>
+        -->
+        <!-- Email Address -->
+        <div class="col-md-4">
+          <h5>E-mail <span>(optional)</span></h5>
+          <!-- <input type="text"> -->
+          <input type="text" class="form-control" placeholder="Your Email" formControlName="email" />
+
+        </div>
+
+      </div>
+      <!-- Row / End -->
+
+
+      <!-- Row -->
+      <div class="row with-forms">
+
+        <!-- Phone 
+        <div class="col-md-4">
+          <h5 class="fb-input"><i class="fa fa-facebook-square"></i> Facebook <span>(optional)</span></h5>
+          <input type="text" placeholder="https://www.facebook.com/">
+        </div>
+        -->
+        <!-- Website 
+        <div class="col-md-4">
+          <h5 class="twitter-input"><i class="fa fa-twitter"></i> Twitter <span>(optional)</span></h5>
+          <input type="text" placeholder="https://www.twitter.com/">
+        </div>
+        -->
+        <!-- Email Address 
+        <div class="col-md-4">
+          <h5 class="gplus-input"><i class="fa fa-google-plus"></i> Google Plus <span>(optional)</span></h5>
+          <input type="text" placeholder="https://plus.google.com">
+        </div>
+        -->
+      </div>
+      
+      <!-- Row / End -->
+
+
+      <!-- Checkboxes -->
+      <h5 class="margin-top-30 margin-bottom-10">Amenities <span>(optional)</span></h5>
+      <div class="checkboxes in-row margin-bottom-20">
+    
+        <input id="check-a" type="checkbox" name="check">
+        <label for="check-a">Elevator in building</label>
+
+        <input id="check-b" type="checkbox" name="check">
+        <label for="check-b">Friendly workspace</label>
+
+        <input id="check-c" type="checkbox" name="check">
+        <label for="check-c">Instant Book</label>
+
+        <input id="check-d" type="checkbox" name="check">
+        <label for="check-d">Wireless Internet</label>
+
+        <input id="check-e" type="checkbox" name="check" >
+        <label for="check-e">Free parking on premises</label>
+
+        <input id="check-f" type="checkbox" name="check" >
+        <label for="check-f">Free parking on street</label>
+
+        <input id="check-g" type="checkbox" name="check">
+        <label for="check-g">Smoking allowed</label>	
+
+        <input id="check-h" type="checkbox" name="check">
+        <label for="check-h">Events</label>
+    
+      </div>
+      <!-- Checkboxes / End -->
+
+    </div>
+    <!-- Section / End -->
+
+
+    <!-- Section -->
+    <div class="add-listing-section margin-top-45">
+      
+      <!-- Headline -->
+      <div class="add-listing-headline">
+        <h3><i class="sl sl-icon-clock"></i> Opening Hours</h3>
+        <!-- Switcher -->
+        <label class="switch"><input type="checkbox" checked><span class="slider round"></span></label>
+      </div>
+      
+      <!-- Switcher ON-OFF Content -->
+      <div class="switcher-content">
+
+        <!-- Day -->
+        <div class="row opening-day">
+          <div class="col-md-2"><h5>Monday</h5></div>
+          <div class="col-md-5">
+            <select class="chosen-select" data-placeholder="Opening Time">
+              <option label="Opening Time"></option>
+              <option>Closed</option>
+              <option>1 AM</option>
+              <option>2 AM</option>
+              <option>3 AM</option>
+              <option>4 AM</option>
+              <option>5 AM</option>
+              <option>6 AM</option>
+              <option>7 AM</option>
+              <option>8 AM</option>
+              <option>9 AM</option>
+              <option>10 AM</option>
+              <option>11 AM</option>
+              <option>12 AM</option>	
+              <option>1 PM</option>
+              <option>2 PM</option>
+              <option>3 PM</option>
+              <option>4 PM</option>
+              <option>5 PM</option>
+              <option>6 PM</option>
+              <option>7 PM</option>
+              <option>8 PM</option>
+              <option>9 PM</option>
+              <option>10 PM</option>
+              <option>11 PM</option>
+              <option>12 PM</option>
+            </select>
+          </div>
+          <div class="col-md-5">
+            <select class="chosen-select" data-placeholder="Closing Time">
+              <option label="Closing Time"></option>
+              <option>Closed</option>
+              <option>1 AM</option>
+              <option>2 AM</option>
+              <option>3 AM</option>
+              <option>4 AM</option>
+              <option>5 AM</option>
+              <option>6 AM</option>
+              <option>7 AM</option>
+              <option>8 AM</option>
+              <option>9 AM</option>
+              <option>10 AM</option>
+              <option>11 AM</option>
+              <option>12 AM</option>	
+              <option>1 PM</option>
+              <option>2 PM</option>
+              <option>3 PM</option>
+              <option>4 PM</option>
+              <option>5 PM</option>
+              <option>6 PM</option>
+              <option>7 PM</option>
+              <option>8 PM</option>
+              <option>9 PM</option>
+              <option>10 PM</option>
+              <option>11 PM</option>
+              <option>12 PM</option>
+            </select>
+          </div>
+        </div>
+        <!-- Day / End -->
+
+        <!-- Day -->
+        <div class="row opening-day js-demo-hours">
+          <div class="col-md-2"><h5>Tuesday</h5></div>
+          <div class="col-md-5">
+            <select class="chosen-select" data-placeholder="Opening Time">
+              <!-- Hours added via JS (this is only for demo purpose) -->
+            </select>
+          </div>
+          <div class="col-md-5">
+            <select class="chosen-select" data-placeholder="Closing Time">
+              <!-- Hours added via JS (this is only for demo purpose) -->
+            </select>
+          </div>
+        </div>
+        <!-- Day / End -->
+
+        <!-- Day -->
+        <div class="row opening-day js-demo-hours">
+          <div class="col-md-2"><h5>Wednesday</h5></div>
+          <div class="col-md-5">
+            <select class="chosen-select" data-placeholder="Opening Time">
+              <!-- Hours added via JS (this is only for demo purpose) -->
+            </select>
+          </div>
+          <div class="col-md-5">
+            <select class="chosen-select" data-placeholder="Closing Time">
+              <!-- Hours added via JS (this is only for demo purpose) -->
+            </select>
+          </div>
+        </div>
+        <!-- Day / End -->
+
+        <!-- Day -->
+        <div class="row opening-day js-demo-hours">
+          <div class="col-md-2"><h5>Thursday</h5></div>
+          <div class="col-md-5">
+            <select class="chosen-select" data-placeholder="Opening Time">
+              <!-- Hours added via JS (this is only for demo purpose) -->
+            </select>
+          </div>
+          <div class="col-md-5">
+            <select class="chosen-select" data-placeholder="Closing Time">
+              <!-- Hours added via JS (this is only for demo purpose) -->
+            </select>
+          </div>
+        </div>
+        <!-- Day / End -->
+
+        <!-- Day -->
+        <div class="row opening-day js-demo-hours">
+          <div class="col-md-2"><h5>Friday</h5></div>
+          <div class="col-md-5">
+            <select class="chosen-select" data-placeholder="Opening Time">
+              <!-- Hours added via JS (this is only for demo purpose) -->
+            </select>
+          </div>
+          <div class="col-md-5">
+            <select class="chosen-select" data-placeholder="Closing Time">
+              <!-- Hours added via JS (this is only for demo purpose) -->
+            </select>
+          </div>
+        </div>
+        <!-- Day / End -->
+
+        <!-- Day -->
+        <div class="row opening-day js-demo-hours">
+          <div class="col-md-2"><h5>Saturday</h5></div>
+          <div class="col-md-5">
+            <select class="chosen-select" data-placeholder="Opening Time">
+              <!-- Hours added via JS (this is only for demo purpose) -->
+            </select>
+          </div>
+          <div class="col-md-5">
+            <select class="chosen-select" data-placeholder="Closing Time">
+              <!-- Hours added via JS (this is only for demo purpose) -->
+            </select>
+          </div>
+        </div>
+        <!-- Day / End -->
+
+        <!-- Day -->
+        <div class="row opening-day js-demo-hours">
+          <div class="col-md-2"><h5>Sunday</h5></div>
+          <div class="col-md-5">
+            <select class="chosen-select" data-placeholder="Opening Time">
+              <!-- Hours added via JS (this is only for demo purpose) -->
+            </select>
+          </div>
+          <div class="col-md-5">
+            <select class="chosen-select" data-placeholder="Closing Time">
+              <!-- Hours added via JS (this is only for demo purpose) -->
+            </select>
+          </div>
+        </div>
+        <!-- Day / End -->
+
+      </div>
+      <!-- Switcher ON-OFF Content / End -->
+
+    </div>
+    <!-- Section / End -->
+
+
+    <!-- Section -->
+    <div class="add-listing-section margin-top-45">
+      
+      <!-- Headline -->
+      <div class="add-listing-headline">
+        <h3><i class="sl sl-icon-book-open"></i> Pricing</h3>
+        <!-- Switcher -->
+        <label class="switch"><input type="checkbox" checked><span class="slider round"></span></label>
+      </div>
+
+      <!-- Switcher ON-OFF Content -->
+      <div class="switcher-content">
+
+        <div class="row">
+          <div class="col-md-12">
+            <table id="pricing-list-container">
+              <tr class="pricing-list-item pattern">
+                <td>
+                  <div class="fm-move"><i class="sl sl-icon-cursor-move"></i></div>
+                  <div class="fm-input pricing-name"><input type="text" placeholder="Title" /></div>
+                  <div class="fm-input pricing-ingredients"><input type="text" placeholder="Description" /></div>
+                  <div class="fm-input pricing-price"><input type="text" placeholder="Price" data-unit="USD" /></div>
+                  <div class="fm-close"><a class="delete" href="#"><i class="fa fa-remove"></i></a></div>
+                </td>
+              </tr>
+            </table>
+            <a href="#" class="button add-pricing-list-item">Add Item</a>
+            <a href="#" class="button add-pricing-submenu">Add Category</a>
+          </div>
+        </div>
+
+      </div>
+      <!-- Switcher ON-OFF Content / End -->
+
+    </div>
+    <!-- Section / End -->
+
+
+    <a href="#" class="button preview">Preview <i class="fa fa-arrow-circle-right"></i></a>
+
+  </div>
+</div>
+<button type="button"  class="btn btn-common" (click)="addUsersData()"> Submit</button>
+
+</form>
