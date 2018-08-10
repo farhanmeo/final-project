@@ -33,14 +33,19 @@
                   <p class="form-row form-row-wide">
                     <label for="username">Username:
                       <i class="im im-icon-Male"></i>
-                      <input type="text" class="input-text" name="username" value="" />
+                      <!-- <input type="text" class="input-text" name="username" value="" /> -->
+                      <input type="text" id="sender-email" class="form-control" name="email" placeholder="Username" [(ngModel)]="email" [ngModelOptions]="{standalone: true}">
+
                     </label>
                   </p>
   
                   <p class="form-row form-row-wide">
                     <label for="password">Password:
                       <i class="im im-icon-Lock-2"></i>
-                      <input class="input-text" type="password" name="password"/>
+                      <!-- <input class="input-text" type="password" name="password"/> -->
+                      <input type="password" class="form-control" placeholder="Password" [(ngModel)]="password" [ngModelOptions]="{standalone: true}">
+
+ 
                     </label>
                     <span class="lost_password">
                       <a href="#" >Lost Your Password?</a>
@@ -48,7 +53,9 @@
                   </p>
   
                   <div class="form-row">
-                    <input type="submit" class="button border margin-top-5" name="login" value="Login" />
+                    <!-- <input type="submit" class="button border margin-top-5" name="login" value="Login" /> -->
+                    <button  class="button border fw margin-top-10" (click)="login()">Login</button>  
+
                     <div class="checkboxes margin-top-10">
                       <input  type="checkbox" name="check">
                       <label for="remember-me">Remember Me</label>
@@ -319,7 +326,7 @@ Your personal details
 <!--original booking-->
 <!--original booking-->
 <!--original booking-->
-<!--original booking-->
+<!--Updated booking-->
 
 <form [formGroup]="postAdd" class="form-ad" novalidate>
         
@@ -341,7 +348,7 @@ Your personal details
           <h5>Listing Title <i class="tip" data-tip-content="Name of your business"></i></h5>
           <!-- <input class="search-field" type="text" value=""/> -->
           <input name="Adtitle" placeholder="Ad title" formControlName="title" class="form-control input-md" type="text"
- #adTitle>
+          #adTitle>
         </div>
       </div>
 

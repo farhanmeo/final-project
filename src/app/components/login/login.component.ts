@@ -8,7 +8,7 @@ import 'rxjs/add/observable/throw';
 import { Observable } from 'rxjs/Observable';
 import { NgIf } from '@angular/common';
 
-//import { AdService, AdListing } from './ad.service';
+// import { AdService, AdListing } from './ad.service';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 
@@ -34,16 +34,9 @@ export class LoginComponent implements OnInit {
   id;
   sCategory: any[];
 selectedFile = null;
-  featuredPhotoSelected(event){
-    // const file: File = event.target.files[0];
-    // const metaData = {"contentType": file.type};
-    // const storageRef: firebase.storage.Reference = firebase.storage().ref('/photos/featured/url');
-    // storageRef.put(file, metaData);
-    // console.log("uploading:", file.name);
-this.selectedFile = event.target.files[0];
-  }
+ 
   
-  constructor(private http: HttpClient, public fb: FormBuilder, private db: AngularFireDatabase, public afAuth: AngularFireAuth, private router: Router) {
+  constructor(public fb: FormBuilder, private db: AngularFireDatabase, public afAuth: AngularFireAuth, private router: Router) {
     this.createForm();
     console.log("post add");
 
@@ -60,8 +53,8 @@ this.selectedFile = event.target.files[0];
     })
 
   this.afAuth.authState.subscribe((auth) => {
-    this.uid = auth.uid;
-    this.data = db.list('/Posted_Ads/' + auth.uid + '/').valueChanges();
+    // this.uid = auth.uid;
+    this.data = db.list('/Posted_Ads/').valueChanges();
     console.log(this.data);
 
   })
@@ -70,9 +63,6 @@ this.selectedFile = event.target.files[0];
 //    const itemsRef = this.db.list('users');
 // itemsRef.push({username: username, email: email,password:password });   
 //   }
-onUpload{
-  const fd = new FormData();
-    }
   
 
   createForm() {
@@ -118,7 +108,7 @@ onUpload{
       console.log(x);
       
       this.router.navigate(['/dashboard']);
-
+      alert('Login Successfully');     
       // if (x.status = true) {
       //   console.log(x);
       //   this.router.navigate(['/dashboard'])
@@ -130,7 +120,7 @@ onUpload{
       // }
     }).catch(err => {
       //      Observable.throw(Error || 'Internal Server error');
-      //alert('Invalid Email OR Password');     
+      alert('Invalid Email OR Password');     
       this.error = 'Invalid ID OR Password';
       console.log(err);
       

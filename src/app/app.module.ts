@@ -12,6 +12,10 @@ import { LoginComponent } from './components/login/login.component';
 import { IndexComponent } from './components/index/index.component';
 import { AddlistingComponent } from './components/addlisting/addlisting.component';
 import {HttpClientModule } from '@angular/common/http';
+import { BookingComponent } from './components/booking/booking.component';
+import { ReviewsComponent } from './components/reviews/reviews.component';
+import { BookmarksComponent } from './components/bookmarks/bookmarks.component';
+import { ProfileComponent } from './components/profile/profile.component';
 @NgModule({
   
   declarations: [
@@ -20,6 +24,10 @@ import {HttpClientModule } from '@angular/common/http';
     LoginComponent,
     IndexComponent,
     AddlistingComponent,
+    BookingComponent,
+    ReviewsComponent,
+    BookmarksComponent,
+    ProfileComponent,
  ],
   imports: [
     AppRoutingModule,

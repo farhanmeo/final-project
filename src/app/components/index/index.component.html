@@ -136,7 +136,7 @@
         <div class="right-side">
           <div class="header-widget">
             <a href="#sign-in-dialog" class="sign-in popup-with-zoom-anim"><i class="sl sl-icon-login"></i> Sign In</a>
-            <a href="#dashboard-add-listing.html" class="button border with-icon">Add Listing <i class="sl sl-icon-plus"></i></a>
+            <a routerLink="add-listing" class="button border with-icon">Add Listing <i class="sl sl-icon-plus"></i></a>
           </div>
         </div>
         <!-- Right Side Content / End -->
@@ -166,14 +166,18 @@
             <p class="form-row form-row-wide">
               <label for="username">Username:
               <i class="im im-icon-Male"></i>
-              <input type="text" class="input-text" name="username" value="" />
-              </label>
+              <!-- <input type="text" class="input-text" name="username" value="" /> -->
+              <input type="text" id="sender-email" class="form-control" name="email" placeholder="Username" [(ngModel)]="email" [ngModelOptions]="{standalone: true}">
+  
+            </label>
             </p>
     
             <p class="form-row form-row-wide">
               <label for="password">Password:
               <i class="im im-icon-Lock-2"></i>
-              <input class="input-text" type="password" name="password"/>
+              <!-- <input class="input-text" type="password" name="password"/> -->
+              <input type="password" class="form-control" placeholder="Password" [(ngModel)]="password" [ngModelOptions]="{standalone: true}">
+
               </label>
               <span class="lost_password">
               <a href="#" >Lost Your Password?</a>
@@ -181,7 +185,9 @@
             </p>
     
             <div class="form-row">
-              <input type="submit" class="button border margin-top-5" name="login" value="Login" />
+              <!-- <input type="submit" class="button border margin-top-5" name="login" value="Login" /> -->
+              <button  class="button border fw margin-top-10" (click)="login()">Login</button>  
+
               <div class="checkboxes margin-top-10">
               <input  type="checkbox" name="check">
               <label for="remember-me">Remember Me</label>
