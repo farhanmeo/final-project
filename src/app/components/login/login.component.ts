@@ -11,6 +11,7 @@ import { NgIf } from '@angular/common';
 // import { AdService, AdListing } from './ad.service';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { AngularFireStorage } from 'angularfire2/storage';
 
 @Component({
   selector: 'app-login',
@@ -18,6 +19,13 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  title = 'app';
+  selectedFiles: FileList;
+  file: File;
+  imgsrc;
+  color: string = 'primary';
+  mode: 'determinate';
+  progressBarValue;
 
   username: any;
   email: any;
@@ -36,7 +44,7 @@ export class LoginComponent implements OnInit {
 selectedFile = null;
  
   
-  constructor(public fb: FormBuilder, private db: AngularFireDatabase, public afAuth: AngularFireAuth, private router: Router) {
+  constructor(private storage: AngularFireStorage,public fb: FormBuilder, private db: AngularFireDatabase, public afAuth: AngularFireAuth, private router: Router) {
     this.createForm();
     console.log("post add");
 
@@ -142,6 +150,23 @@ selectedFile = null;
   // }
   logout() {
     this.afAuth.auth.signOut();
+  }
+  chooseFiles(event) {
+    this.selectedFiles = event.target.files;
+    if (this.selectedFiles.item(0))
+      this.uploadpic();  
+  }
+
+  uploadpic() {
+    let file = this.selectedFiles.item(0);
+    let uniqkey = 'pic' + Math.floor(Math.random() * 1000000);
+    const uploadTask = this.storage.upload('/angfire2store/', file);
+
+//    this.imgsrc = uploadTask.downloadURL();
+
+    uploadTask.percentageChanges().subscribe((value) => {
+      this.progressBarValue = value.toFixed(2);
+    })
   }
 
   ngOnInit() {

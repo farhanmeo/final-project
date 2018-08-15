@@ -8,8 +8,6 @@ import 'rxjs/add/observable/throw';
 // import { AdService, AdListing } from './ad.service';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { Script } from 'vm';
-
 @Component({
   selector: 'app-index',
   templateUrl: './index.component.html',

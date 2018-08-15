@@ -333,8 +333,12 @@
 		<!-- Section / End -->
 	
 	
-		<input type="file" (change)="featuredPhotoSelected($event)">
-		<button type="button" (click)="onUpload()">Upload</button>
+<!-- <Image Upload Code> open-->
+		<button mat-raised-button color="primary" (click)="fileInput.click()">Click</button>
+		<input #fileInput type="file" (change)="chooseFiles($event)" style="display:none;" />
+	<img style="height: 100px; width: 100px;" src="{{imgsrc | async}}">
+<!-- <Image Upload Code close> -->
+	
 		<!-- Section -->
 		<div class="add-listing-section margin-top-45">
 	

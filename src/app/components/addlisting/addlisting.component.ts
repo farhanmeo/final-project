@@ -7,7 +7,7 @@ import 'rxjs/add/observable/throw';
 import { Observable } from 'rxjs/Observable';
 import { NgIf } from '@angular/common';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { AngularFireStorage } from 'angularfire2/storage';
 
 @Component({
   selector: 'app-addlisting',
@@ -15,6 +15,15 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./addlisting.component.css']
 })
 export class AddlistingComponent implements OnInit {
+  title = 'app';
+  selectedFiles: FileList;
+  file: File;
+  imgsrc;
+  color: string = 'primary';
+  mode: 'determinate';
+  progressBarValue;
+
+
   username: any;
   email: any;
   password: any;
@@ -31,7 +40,7 @@ export class AddlistingComponent implements OnInit {
   sCategory: any[];
 selectedFile = null;
 
-  constructor(public fb: FormBuilder, private db: AngularFireDatabase, public afAuth: AngularFireAuth, private router: Router) {
+  constructor(private storage: AngularFireStorage,public fb: FormBuilder, private db: AngularFireDatabase, public afAuth: AngularFireAuth, private router: Router) {
     this.createForm();
     console.log("post add");
 
@@ -79,6 +88,23 @@ selectedFile = null;
     alert('Added !');
 
 
+  }
+  chooseFiles(event) {
+    this.selectedFiles = event.target.files;
+    if (this.selectedFiles.item(0))
+      this.uploadpic();  
+  }
+
+  uploadpic() {
+    let file = this.selectedFiles.item(0);
+    let uniqkey = 'pic' + Math.floor(Math.random() * 1000000);
+    const uploadTask = this.storage.upload('/Posted-Add/images', file);
+
+//    this.imgsrc = uploadTask.downloadURL();
+
+    uploadTask.percentageChanges().subscribe((value) => {
+      this.progressBarValue = value.toFixed(2);
+    })
   }
 
   ngOnInit() {
