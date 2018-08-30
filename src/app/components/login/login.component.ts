@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireDatabase, AngularFireList  } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -7,7 +7,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import 'rxjs/add/observable/throw';
 import { Observable } from 'rxjs/Observable';
 import { NgIf } from '@angular/common';
-
 // import { AdService, AdListing } from './ad.service';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
@@ -17,6 +16,7 @@ import { AngularFireStorage } from 'angularfire2/storage';
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
+
 })
 export class LoginComponent implements OnInit {
   title = 'app';
@@ -42,17 +42,12 @@ export class LoginComponent implements OnInit {
   id;
   sCategory: any[];
 selectedFile = null;
+extract: AngularFireList<any>;
  
   
-  constructor(private storage: AngularFireStorage,public fb: FormBuilder, private db: AngularFireDatabase, public afAuth: AngularFireAuth, private router: Router) {
+  constructor(private firebase :AngularFireDatabase ,private storage: AngularFireStorage,public fb: FormBuilder, private db: AngularFireDatabase, public afAuth: AngularFireAuth, private router: Router) {
     this.createForm();
     console.log("post add");
-
-    // db.list('/users').valueChanges().subscribe(users => {
-    //   this.users = users;
-    //   console.log(this.users);
-
-    // });
 
     db.list('/Category')
     .valueChanges().subscribe(category => {
@@ -71,9 +66,18 @@ selectedFile = null;
 //    const itemsRef = this.db.list('users');
 // itemsRef.push({username: username, email: email,password:password });   
 //   }
-  
+getData(){
+  this.extract = this.firebase.list('Category');
+  return this.extract;
 
-  createForm() {
+}
+// getData(){
+//   this.employeeList = this.firebase.list('Category');
+//   return this.employeeList;
+// console.log(this.employeeList);
+// }
+
+createForm() {
     this.postAdd = this.fb.group({
       title: ['', [Validators.required, Validators.minLength(5)]],
       Category: ['', [Validators.required, Validators.minLength(5)]],
@@ -90,7 +94,7 @@ selectedFile = null;
     })
 
   }
-  // private addUsersDataForLogin() {
+    // private addUsersDataForLogin() {
   //   const itemsRef = this.db.list('/login');
   //   itemsRef.push({ email: this.email, password: this.password });
   // }

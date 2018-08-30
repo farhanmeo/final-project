@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -8,13 +7,20 @@ import { Observable } from 'rxjs/Observable';
 import { NgIf } from '@angular/common';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { AngularFireStorage } from 'angularfire2/storage';
+import { AngularFireDatabase, AngularFireList} from 'angularfire2/database';
+
+import { Employee } from '../employees/shared/employee.model';
+import { EmployeeService } from '../employees/shared/employee.service';
+
 
 @Component({
   selector: 'app-addlisting',
   templateUrl: './addlisting.component.html',
-  styleUrls: ['./addlisting.component.css']
+  styleUrls: ['./addlisting.component.css'],
+  providers: [ EmployeeService ]
 })
 export class AddlistingComponent implements OnInit {
+  employeeList: Employee[];
   title = 'app';
   selectedFiles: FileList;
   file: File;
@@ -40,7 +46,8 @@ export class AddlistingComponent implements OnInit {
   sCategory: any[];
 selectedFile = null;
 
-  constructor(private storage: AngularFireStorage,public fb: FormBuilder, private db: AngularFireDatabase, public afAuth: AngularFireAuth, private router: Router) {
+  constructor(private employeeService: EmployeeService,private storage: AngularFireStorage,public fb: FormBuilder, private db: AngularFireDatabase, public afAuth: AngularFireAuth, private router: Router) {
+   
     this.createForm();
     console.log("post add");
 
@@ -60,6 +67,20 @@ selectedFile = null;
 
     
    }
+   ngOnInit() {
+    var x = this.employeeService.getData();
+    x.snapshotChanges().subscribe(item => {
+      this.employeeList = [];
+      item.forEach(element => {
+        var y = element.payload.toJSON();
+        y["$key"] = element.key;
+        this.employeeList.push(y as Employee);
+        console.log(this.employeeList)
+      });
+    });
+
+  }
+
    createForm() {
     this.postAdd = this.fb.group({
       Category: ['', [Validators.required, Validators.minLength(5)]],
@@ -107,7 +128,5 @@ selectedFile = null;
     })
   }
 
-  ngOnInit() {
-  }
 
 }

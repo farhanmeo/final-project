@@ -16,13 +16,20 @@ import { BookingComponent } from './components/booking/booking.component';
 import { ReviewsComponent } from './components/reviews/reviews.component';
 import { BookmarksComponent } from './components/bookmarks/bookmarks.component';
 import { ProfileComponent } from './components/profile/profile.component';
-import { UploadListComponent } from './components/uploads/upload-list/upload-list.component';
-import { UploadFormComponent } from './components/uploads/upload-form/upload-form.component';
+import { RouterModule, Routes } from '@angular/router';
+
 //for image upload
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 //import { MatProgressBarModule, MatButtonModule } from '@angular/material';
 import { AngularFireStorageModule } from 'angularfire2/storage';
+import { MessagesComponent } from './components/messages/messages.component';
+import { MyAdsComponent } from './components/my-ads/my-ads.component';
+import { DashboardContentComponent } from './components/dashboard-content/dashboard-content.component';
+import { EmployeesComponent } from './components/employees/employees.component';
+import { EmployeeComponent } from './components/employees/employee/employee.component';
+import { EmployeeListComponent } from './components/employees/employee-list/employee-list.component';
+
 @NgModule({
   
   declarations: [
@@ -35,10 +42,14 @@ import { AngularFireStorageModule } from 'angularfire2/storage';
     ReviewsComponent,
     BookmarksComponent,
     ProfileComponent,
-    UploadListComponent,
-    UploadFormComponent,
+    MessagesComponent,
+    MyAdsComponent,
+    DashboardContentComponent,
+    EmployeesComponent,
+    EmployeeComponent,
+    EmployeeListComponent
  ],
-  imports: [
+ imports: [
     AppRoutingModule,
     BrowserModule,
     ReactiveFormsModule,

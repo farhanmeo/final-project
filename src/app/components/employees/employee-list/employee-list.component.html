@@ -1,19 +1,19 @@
 
 	<!-- Content
 	================================================== -->
-	<div class="dashboard-content">
+	<div class="dashboard-content" >
 
 		<!-- Titlebar -->
 		<div id="titlebar">
 			<div class="row">
 				<div class="col-md-12">
-					<h2>Bookmarks</h2>
+					<h2>My Listings</h2>
 					<!-- Breadcrumbs -->
 					<nav id="breadcrumbs">
 						<ul>
 							<li><a href="#">Home</a></li>
 							<li><a href="#">Dashboard</a></li>
-							<li>Bookmarks</li>
+							<li>My Listings</li>
 						</ul>
 					</nav>
 				</div>
@@ -25,62 +25,52 @@
 			<!-- Listings -->
 			<div class="col-lg-12 col-md-12">
 				<div class="dashboard-list-box margin-top-0">
-					<h4>Bookmarked Listings</h4>
+					<h4>Active Listings</h4>
 					<ul>
 
-						<li>
+						<li *ngFor="let employee of employeeList">
 							<div class="list-box-listing">
-								<div class="list-box-listing-img"><a href="#"><img src="images/listing-item-02.jpg" alt=""></a></div>
+								<div class="list-box-listing-img"><a href="#"><img src="images/listing-item-01.jpg" alt=""></a></div>
 								<div class="list-box-listing-content">
 									<div class="inner">
-										<h3>Sticky Band</h3>
-										<span>Bishop Avenue, New York</span>
-										<div class="star-rating" data-rating="5.0">
-											<div class="rating-counter">(23 reviews)</div>
-										</div>
+                                   
+                    <h3><a href="#">{{employee.Category}}</a></h3>
+										<span>964 School Street, New York</span>
+										<div class="star-rating" data-rating="3.5">
+											<div class="rating-counter">(12 reviews)</div>
+                    </div>
+                    
 									</div>
 								</div>
 							</div>
 							<div class="buttons-to-right">
+								<a href="#" class="button gray"><i class="sl sl-icon-note"></i> Edit</a>
 								<a href="#" class="button gray"><i class="sl sl-icon-close"></i> Delete</a>
 							</div>
 						</li>
 
-						<li>
-							<div class="list-box-listing">
-								<div class="list-box-listing-img"><a href="#"><img src="images/listing-item-04.jpg" alt=""></a></div>
-								<div class="list-box-listing-content">
-									<div class="inner">
-										<h3>Burger House</h3>
-										<span>2726 Shinn Street, New York</span>
-										<div class="star-rating" data-rating="5.0">
-											<div class="rating-counter">(31 reviews)</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="buttons-to-right">
-								<a href="#" class="button gray"><i class="sl sl-icon-close"></i> Delete</a>
-							</div>
-						</li>
+<li>
+    <tr *ngFor="let employee of employeeList">
+      <td>{{employee.name}}</td>
+      <td>{{employee.Category}}</td>
+  
+      <td>{{employee.Description}}</td>
+      <td>{{employee.title}}</td>
 
-						<li>
-							<div class="list-box-listing">
-								<div class="list-box-listing-img"><a href="#"><img src="images/listing-item-06.jpg" alt=""></a></div>
-								<div class="list-box-listing-content">
-									<div class="inner">
-										<h3>Think Coffee</h3>
-										<span>215 Terry Lane, New York</span>
-										<div class="star-rating" data-rating="5.0">
-											<div class="rating-counter">(31 reviews)</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="buttons-to-right">
-								<a href="#" class="button gray"><i class="sl sl-icon-close"></i> Delete</a>
-							</div>
-						</li>
+    <td>
+      <a class="btn" (click)="onEdit(employee)">
+        <i class="fa fa-pencil-square-o"></i>
+      </a>
+      <a class="btn" (click)="onDelete(employee.$key)">
+        <i class="fa fa-trash-o"></i>
+      </a>
+    </td>
+</tr>
+
+
+</li>
+
+
 
 					</ul>
 				</div>

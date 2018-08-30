@@ -20,6 +20,7 @@
       "prefix": "app",
       "styles": [
         "styles.css"
+   
       ],
       "scripts": [
         "./assets/scripts/jquery-2.2.0.min.js",
