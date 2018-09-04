@@ -20,21 +20,20 @@
       "prefix": "app",
       "styles": [
         "styles.css"
-   
       ],
       "scripts": [
-        "./assets/scripts/jquery-2.2.0.min.js",
-        "./assets/scripts/mmenu.min.js",
-        "./assets/scripts/chosen.min.js",
-        "./assets/scripts/slick.min.js",
-        "./assets/scripts/rangeslider.min.js",
-        "./assets/scripts/magnific-popup.min.js",
-        "./assets/scripts/waypoints.min.js",
-        "./assets/scripts/counterup.min.js",
-        "./assets/scripts/jquery-ui.min.js",
-        "./assets/scripts/tooltips.min.js",
-        "./assets/scripts/custom.js",
-        "./assets/scripts/switcher.js"
+        "assets/scripts/jquery-2.2.0.min.js",
+        "assets/scripts/mmenu.min.js",
+        "assets/scripts/chosen.min.js",
+        "assets/scripts/slick.min.js",
+        "assets/scripts/rangeslider.min.js",
+        "assets/scripts/magnific-popup.min.js",
+        "assets/scripts/waypoints.min.js",
+        "assets/scripts/counterup.min.js",
+        "assets/scripts/jquery-ui.min.js",
+        "assets/scripts/tooltips.min.js",
+        "assets/scripts/custom.js",
+        "assets/scripts/switcher.js"
 
       ],
       "environmentSource": "environments/environment.ts",

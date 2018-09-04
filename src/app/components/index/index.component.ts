@@ -54,7 +54,7 @@ itemsRef.push({username: username, email: email,password:password });
     this.afAuth.auth.signInWithEmailAndPassword(this.email, this.password).then(x => {
       console.log(x);
       
-      this.router.navigate(['/dashboard']);
+      this.router.navigate(['/dashboard/dashboard-content']);
       alert('Login Successfully');    
       // document.getElementById('sign-in-dialog').click(); 
       //$('#sign-in-dialog').dialog('close')

@@ -7,17 +7,17 @@ import { Observable } from 'rxjs/Observable';
 import { NgIf } from '@angular/common';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { AngularFireStorage } from 'angularfire2/storage';
-import { AngularFireDatabase, AngularFireList} from 'angularfire2/database';
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 
-import { Employee } from '../employees/shared/employee.model';
-import { EmployeeService } from '../employees/shared/employee.service';
+import { Employee } from '../crud/shared/list.model';
+import { EmployeeService } from '../crud/shared/list.service';
 
 
 @Component({
   selector: 'app-addlisting',
   templateUrl: './addlisting.component.html',
   styleUrls: ['./addlisting.component.css'],
-  providers: [ EmployeeService ]
+  providers: [EmployeeService]
 })
 export class AddlistingComponent implements OnInit {
   employeeList: Employee[];
@@ -44,14 +44,15 @@ export class AddlistingComponent implements OnInit {
   data: Observable<any[]>;
   id;
   sCategory: any[];
-selectedFile = null;
+  selectedFile = null;
+  uniqkey1;
 
-  constructor(private employeeService: EmployeeService,private storage: AngularFireStorage,public fb: FormBuilder, private db: AngularFireDatabase, public afAuth: AngularFireAuth, private router: Router) {
-   
+  constructor(private employeeService: EmployeeService, private storage: AngularFireStorage, public fb: FormBuilder, private db: AngularFireDatabase, public afAuth: AngularFireAuth, private router: Router) {
+
     this.createForm();
     console.log("post add");
 
-  
+
     db.list('/Category')
       .valueChanges().subscribe(category => {
         this.sCategory = category;
@@ -60,15 +61,16 @@ selectedFile = null;
 
     this.afAuth.authState.subscribe((auth) => {
       this.uid = auth.uid;
-      this.data = db.list('/Posted_Ads/' + auth.uid + '/').valueChanges();
+     this.data = db.list('/Posted_Ads/' + auth.uid + '/').valueChanges();
+
       console.log(this.data);
 
     })
 
-    
-   }
-   ngOnInit() {
-    var x = this.employeeService.getData();
+
+  }
+  ngOnInit() {
+    var x = this.employeeService.getCategory();
     x.snapshotChanges().subscribe(item => {
       this.employeeList = [];
       item.forEach(element => {
@@ -81,7 +83,7 @@ selectedFile = null;
 
   }
 
-   createForm() {
+  createForm() {
     this.postAdd = this.fb.group({
       Category: ['', [Validators.required, Validators.minLength(5)]],
       title: ['', [Validators.required, Validators.minLength(5)]],
@@ -91,9 +93,9 @@ selectedFile = null;
       email: ['', [Validators.required, Validators.minLength(5)]],
       phone: [, [Validators.required, Validators.minLength(5)]],
       password: ['', [Validators.required, Validators.minLength(5)]],
-      image: ['', [Validators.required]],
+      image: ['', Validators.required],
       keywords: ['', [Validators.required, Validators.minLength(5)]],
- 
+
 
     })
 
@@ -101,27 +103,35 @@ selectedFile = null;
   private addUsersData() {
     console.log(this.postAdd.value);
     console.log(this.uid);
+    
+
+    // if (this.selectedFiles.item(0))
+      this.uploadpic();
 
 
- //   let itemsRef = this.db.list('/Posted_Ads/' + this.uid + '/');
+      this.postAdd.patchValue({
+        image: this.uniqkey1
+      })
+      
+    //   let itemsRef = this.db.list('/Posted_Ads/' + this.uid + '/');
     let itemsRef = this.db.list('/Posted_Ads/');
-    if(itemsRef.push(this.postAdd.value))
-    alert('Added !');
+    if (itemsRef.push(this.postAdd.value))
+      alert('Added !');
 
 
   }
   chooseFiles(event) {
     this.selectedFiles = event.target.files;
-    if (this.selectedFiles.item(0))
-      this.uploadpic();  
+
   }
+  
 
   uploadpic() {
     let file = this.selectedFiles.item(0);
     let uniqkey = 'pic' + Math.floor(Math.random() * 1000000);
-    const uploadTask = this.storage.upload('/Posted-Add/images', file);
-
-//    this.imgsrc = uploadTask.downloadURL();
+    const uploadTask = this.storage.upload('/Posted-Add/'+uniqkey, file);
+    this.uniqkey1 = uniqkey;
+    //    this.imgsrc = uploadTask.downloadURL();
 
     uploadTask.percentageChanges().subscribe((value) => {
       this.progressBarValue = value.toFixed(2);

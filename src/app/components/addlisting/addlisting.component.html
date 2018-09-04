@@ -2,7 +2,28 @@
 <!-- Content
 	================================================== -->
 	<div class="dashboard-content">
-
+			<form #employeeForm="ngForm" (ngSubmit)="onSubmit(employeeForm)">
+					<input type="hidden" name="$key" #$key="ngModel" [(ngModel)]="employeeService.selectedEmployee.$key">
+					<div class="form-group">
+					<label>Category</label>
+					<input class="form-control" name="Category" #name="ngModel" [(ngModel)]="employeeService.selectedEmployee.Category" placeholder="category" required>
+					</div>
+					<div class="form-group">
+						<label>title</label>
+						<input class="form-control" name="title" #name="ngModel" [(ngModel)]="employeeService.selectedEmployee.title" placeholder="title" required>
+						</div><div class="form-group">
+							<label>Description</label>
+							<input class="form-control" name="Description" #name="ngModel" [(ngModel)]="employeeService.selectedEmployee.Description" placeholder="Description" required>
+							</div>
+					<div class="form-group">
+					<button class="btn btn-default" type="submit" [disabled]="!employeeForm.valid">
+						<i class="fa fa-floppy-o"></i>
+						 Submit</button>
+					<button class="btn btn-default" type="button" (click)="resetForm(employeeForm)">
+						<i class="fa fa-repeat"></i>
+						 Reset</button>
+					</div>
+					</form>
 		<!-- Titlebar -->
 		<div id="titlebar">
 			<div class="row">
@@ -42,9 +63,9 @@
 			<div class="col-md-12">
 			  <h5>Listing Title <i class="tip" data-tip-content="Name of your business"></i></h5>
 			  <!-- <input class="search-field" type="text" value=""/> -->
-			  <input name="Adtitle" placeholder="Ad title" formControlName="title" class="form-control input-md" type="text"
-	 #adTitle>
-			</div>
+				<input name="Adtitle" placeholder="Ad title" formControlName="title" class="form-control input-md" type="text" #adTitle>
+	
+				</div>
 		  </div>
 	
 		  <!-- Row -->
@@ -133,11 +154,7 @@
 		<!-- Section / End -->
 	
 	
-<!-- <Image Upload Code> open-->
-		<button mat-raised-button color="primary" (click)="fileInput.click()">Click</button>
-		<input #fileInput type="file" (change)="chooseFiles($event)" style="display:none;" />
-	<img style="height: 100px; width: 100px;" src="{{imgsrc | async}}">
-<!-- <Image Upload Code close> -->
+
 	
 		<!-- Section -->
 		<div class="add-listing-section margin-top-45">
@@ -149,8 +166,38 @@
 	
 		  <!-- Dropzone -->
 		  <div class="submit-section">
+	
+				<!-- <Image Upload Code> open-->
+		<!-- <button mat-raised-button color="primary" (click)="fileInput.click()">Click</button> -->
+		<input #fileInput type="file" name="file" id ="profile-img" (change)="chooseFiles($event)"  />
+	<!-- <img id="profile-img-tag" style="height: 100px; width: 100px;" src=""> -->
+	<img src="" id="profile-img-tag" width="200px" />
+
+	<!-- <Image Upload Code close> -->
+<!-- <Image Upload Code close> -->
+<!-- <Image Upload Code close> -->
+	
+	<script type="text/javascript">
+			function readURL(input) {
+					if (input.files && input.files[0]) {
+							var reader = new FileReader();
+							
+							reader.onload = function (e) {
+									$('#profile-img-tag').attr('src', e.target.result);
+							}
+							reader.readAsDataURL(input.files[0]);
+					}
+			}
+			$("#profile-img").change(function(){
+					readURL(this);
+			});
+	</script>
+	
+<!-- <Image Upload Code close> -->
+
 			<form action="/file-upload" class="dropzone" ></form>
-		  </div>
+			
+		</div>
 	
 		</div>
 		<!-- Section / End -->
@@ -516,6 +563,7 @@
 <script type="text/javascript" src="scripts/tooltips.min.js"></script>
 <script type="text/javascript" src="scripts/custom.js"></script>
 
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
 
 <!-- Opening hours added via JS (this is only for demo purpose) -->
 <script>

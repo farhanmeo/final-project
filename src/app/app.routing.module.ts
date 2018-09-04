@@ -12,9 +12,9 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { MyAdsComponent } from './components/my-ads/my-ads.component';
 import { DashboardContentComponent } from './components/dashboard-content/dashboard-content.component';
 
-import { EmployeesComponent } from './components/employees/employees.component';
-import { EmployeeComponent } from './components/employees/employee/employee.component';
-import { EmployeeListComponent } from './components/employees/employee-list/employee-list.component';
+import { EmployeesComponent } from './components/crud/employees.component';
+import { EmployeeComponent } from './components/crud/employee/employee.component';
+import { EmployeeListComponent } from './components/crud/employee-list/employee-list.component';
 
 
 const routes: Routes = [
