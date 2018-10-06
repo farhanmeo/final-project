@@ -130,7 +130,9 @@
         <div class="right-side">
           <div class="header-widget">
             <a href="#sign-in-dialog" class="sign-in popup-with-zoom-anim"><i class="sl sl-icon-login"></i> Sign In</a>
-            <a routerLink="/dashboard/add-listing" class="button border with-icon">Add Listing <i class="sl sl-icon-plus"></i></a>
+            <a href="#sign-in-dialog" class="sign-in popup-with-zoom-anim"><i class="sl sl-icon-plus"></i> Ad Listing</a>
+
+            <!-- <a routerLink="/dashboard/add-listing" class="button border with-icon">Add Listing <i class="sl sl-icon-plus"></i></a> -->
           </div>
         </div>
         <!-- Right Side Content / End -->
@@ -279,14 +281,19 @@
   
               <div class="main-search-input-item">
                 <select data-placeholder="All Categories" class="chosen-select" >
-                  <option>All Categories</option>	
-                  <option>Shops</option>
-                  <option>Hotels</option>
-                  <option>Restaurants</option>
-                  <option>Fitness</option>
-                  <option>Events</option>
+                  <option  label="Select">Select Category</option>	
+                  <option *ngFor="let employee of employeeList">{{employee.Category}}</option>
                 </select>
               </div>
+              <!-- <div class="col-md-6">
+                <h5>Category</h5>
+                <select name="category-group" id="category-group" formControlName="Category" class="form-control" #catagory>
+                <select class="chosen-select-no-single" >
+                <option  label="blank">Select Category</option>	
+                <option *ngFor="let employee of employeeList">{{employee.Category}}</option>
+                </select>
+              </div> -->
+        
   
               <button class="button" onclick="window.location.href='listings-half-screen-map-list.html'">Search</button>
   
@@ -319,82 +326,56 @@
   <div class="fullwidth-carousel-container margin-top-25">
     <div class="fullwidth-slick-carousel category-carousel">
   
-      <!-- Item -->
+        <li *ngFor="let employee of employeeList">
       <div class="fw-carousel-item">
-            
-        <!-- this (first) box will be hidden under 1680px resolution -->
+                <!-- this (first) box will be hidden under 1680px resolution -->
         <div class="category-box-container half">
-          <a href="listings-half-screen-map-grid-1.html" class="category-box" data-background-image="images/category-box-01.jpg">					
+          <a href="listings-half-screen-map-grid-1.html" class="category-box" data-background-image="../../../assets/images/category-box-01.jpg">					
             <div class="category-box-content">
               <h3>Hotels</h3>
               <span>64 listings</span>
             </div>
             <span class="category-box-btn">Browse</span>
           </a>
-        </div>
-  
+        </div>  
         <div class="category-box-container half">
-          <a href="listings-half-screen-map-grid-1.html" class="category-box" data-background-image="../../../assets/images/category-box-02.jpg">
+          <!-- <a href="listings-half-screen-map-grid-1.html" class="category-box" data-background-image="../../../assets/images/category-box-02.jpg">
+           -->
+           <a href="listings-half-screen-map-grid-1.html" class="category-box" data-background-image="../../../assets/images/category-box-01.jpg">					
+            <!-- <img [src] = "imgsrc | async" alt=""> -->
+							
             <div class="category-box-content">
-              <h3>Shops</h3>
-              <span>14 listings</span>
+              <h3>{{employee.username}}</h3>
+              <span>{{employee.email}}</span>
+              <span>{{employee.password}}</span>
             </div>
             <span class="category-box-btn">Browse</span>
           </a>
         </div>
       </div>
-  
+        </li>
+        <div class="category-box-container half">
+            <a href="listings-half-screen-map-grid-1.html" class="category-box" data-background-image="../../../assets/images/category-box-02.jpg">					
+              <div class="category-box-content">
+                <h3>Hotels</h3>
+                <span>64 listings</span>
+              </div>
+              <span class="category-box-btn">Browse</span>
+            </a>
+          </div>  
       <!-- Item -->
-      <div class="fw-carousel-item">
+        <!-- <div class="fw-carousel-item">
         <div class="category-box-container">
           <a href="listings-half-screen-map-grid-1.html" class="category-box" data-background-image="../../../assets/images/category-box-03.jpg">
             <div class="category-box-content">
-              <h3>Events</h3>
+              <h3>{{employee.Category}}</h3>
               <span>67 listings</span>
             </div>
             <span class="category-box-btn">Browse</span>
           </a>
         </div>
       </div>
-  
-      <!-- Item -->
-      <div class="fw-carousel-item">
-        <div class="category-box-container">
-          <a href="listings-half-screen-map-grid-1.html" class="category-box" data-background-image="../../../assets/images/category-box-04.jpg">
-            <div class="category-box-content">
-              <h3>Fitness</h3>
-              <span>27 listings</span>
-            </div>
-            <span class="category-box-btn">Browse</span>
-          </a>
-        </div>
-      </div>
-  
-      <!-- Item -->
-      <div class="fw-carousel-item">
-        <div class="category-box-container">
-          <a href="listings-half-screen-map-list.html" class="category-box" data-background-image="../../../assets/images/category-box-05.jpg">
-            <div class="category-box-content">
-              <h3>Nightlife</h3>
-              <span>22 listings</span>
-            </div>
-            <span class="category-box-btn">Browse</span>
-          </a>
-        </div>
-      </div>
-  
-      <!-- Item -->
-      <div class="fw-carousel-item">
-        <div class="category-box-container">
-          <a href="listings-half-screen-map-list.html" class="category-box" data-background-image="../../../assets/images/category-box-06.jpg">
-            <div class="category-box-content">
-              <h3>Eat & Drink</h3>
-              <span>130 listings</span>
-            </div>
-            <span class="category-box-btn">Browse</span>
-          </a>
-        </div>
-      </div>
+      </li> -->
   
     </div>
   </div>

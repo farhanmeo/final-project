@@ -15,8 +15,10 @@ import { DashboardContentComponent } from './components/dashboard-content/dashbo
 import { EmployeesComponent } from './components/crud/employees.component';
 import { EmployeeComponent } from './components/crud/employee/employee.component';
 import { EmployeeListComponent } from './components/crud/employee-list/employee-list.component';
-
-
+import { UploadFormComponent } from './components/uploads/upload-form/upload-form.component';
+import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
+import { AdminComponent } from './components/admin/admin.component';
+import { UsersListComponent } from './components/users-list/users-list.component';
 const routes: Routes = [
   { path: 'add-listing', component: AddlistingComponent },
  
@@ -31,9 +33,19 @@ const routes: Routes = [
           { path: 'profile', component: ProfileComponent },
           { path: 'my-ads', component: MyAdsComponent },
           { path: 'add-listing', component: AddlistingComponent },
+          { path: 'admin-dashboard', component: AdminDashboardComponent },
+
              
         ]
   },
+  { path: 'admin', component: AdminComponent,
+  children: [
+     { path: 'admin-dashboard', component: AdminDashboardComponent },        
+     { path: 'users-list', component: UsersListComponent },        
+
+    ]
+},
+
   { path: '', component: IndexComponent },
   // { path: 'dashboard', component: DashboardComponent },
   { path: 'login', component: LoginComponent },
@@ -41,7 +53,7 @@ const routes: Routes = [
   { path: 'add-listing', component: AddlistingComponent },
   { path: 'employees', component: EmployeesComponent },
   { path: 'list', component: EmployeeListComponent },
- 
+  { path: 'upload', component: UploadFormComponent }, 
 ];
 
 

@@ -1,0 +1,27 @@
+
+
+<li>
+    <tr *ngFor="let employee of employeeList">
+      <!-- <td>{{employee.name}}</td>
+      <td>{{employee.position}}</td>
+  
+      <td>{{employee.office}}</td>
+      <td>{{employee.salary}}</td> -->
+
+      <td>{{employee.Category}}</td>
+      <td>{{employee.title}}</td>
+  
+      <td>{{employee.image}}</td>
+      <td>100000</td>
+
+    <td>
+      <a  class="btn" (click)="onEdit(employee)">
+        <i class="fa fa-pencil-square-o"></i>
+      </a>
+      <a class="btn" (click)="onDelete(employee.$key)">
+        <i class="fa fa-trash-o"></i>
+      </a>
+    </td>
+</tr>
+
+</li>

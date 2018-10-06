@@ -16,7 +16,7 @@ import { BookingComponent } from './components/booking/booking.component';
 import { ReviewsComponent } from './components/reviews/reviews.component';
 import { BookmarksComponent } from './components/bookmarks/bookmarks.component';
 import { ProfileComponent } from './components/profile/profile.component';
-import { RouterModule, Routes } from '@angular/router';
+// import { RouterModule, Routes } from '@angular/router';
 //for image upload
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -28,7 +28,11 @@ import { DashboardContentComponent } from './components/dashboard-content/dashbo
 import { EmployeesComponent } from './components/crud/employees.component';
 import { EmployeeComponent } from './components/crud/employee/employee.component';
 import { EmployeeListComponent } from './components/crud/employee-list/employee-list.component';
-
+import { UploadFormComponent } from './components/uploads/upload-form/upload-form.component';
+import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
+import { AdminComponent } from './components/admin/admin.component';
+import { UsersListComponent } from './components/users-list/users-list.component';
+import { FlexLayoutModule } from '@angular/flex-layout' ;
 @NgModule({
   
   declarations: [
@@ -46,21 +50,26 @@ import { EmployeeListComponent } from './components/crud/employee-list/employee-
     DashboardContentComponent,
     EmployeesComponent,
     EmployeeComponent,
-    EmployeeListComponent
+    EmployeeListComponent,
+    UploadFormComponent,
+    AdminDashboardComponent,
+    AdminComponent,
+    UsersListComponent
  ],
  imports: [
+  
     AppRoutingModule,
     BrowserModule,
     ReactiveFormsModule,
     FormsModule,
+    //Firebase Database
      AngularFireModule.initializeApp(environment.firebaseConfig),
      AngularFireDatabaseModule,
      AngularFireAuthModule,
      HttpClientModule,
      BrowserAnimationsModule,
      AngularFireStorageModule,
-    //  MatProgressBarModule,
-    //  MatButtonModule
+     FlexLayoutModule,
  
     
   ],

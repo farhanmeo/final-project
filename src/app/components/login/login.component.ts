@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFireDatabase, AngularFireList  } from 'angularfire2/database';
+// import { AngularFireDatabase, AngularFireList  } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -12,6 +12,8 @@ import { NgIf } from '@angular/common';
 // import { AdService, AdListing } from './ad.service';
 import { NgForm } from '@angular/forms'
 
+import { AngularFireDatabase } from 'angularfire2/database';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -23,7 +25,36 @@ import { NgForm } from '@angular/forms'
 
 export class LoginComponent implements OnInit {
    
-  constructor(private employeeService: EmployeeService) {
+  username: any;
+  email: any;
+  password: any;
+  time: any;
+  date: any;
+  name: any;
+  phone: any;
+  pickuptime: any;
+  returntime: any;
+  id: number;
+  uid;
+  data;
+  viewData;
+  constructor(private db: AngularFireDatabase, public afAuth: AngularFireAuth, private router: Router, public route: ActivatedRoute,private employeeService: EmployeeService) {
+    // db.list('/users').valueChanges().subscribe(users => {
+    //   this.email = users;
+    //   console.log(this.email);
+
+    // });
+    this.afAuth.authState.subscribe((auth) => {
+      this.uid = auth.uid;
+      this.data = db.list('/Posted_Ads/' + auth.uid + '/').valueChanges();
+      
+      this.data.subscribe(data => {
+        console.log(data);
+        console.log(this.uid);
+        console.log(data[this.id]);
+        this.viewData = data[this.id];
+      });
+    });
   }
 
   ngOnInit() {
@@ -53,7 +84,8 @@ resetForm(employeeForm?: NgForm) {
     Category: '',
     Description: '',
     title: '',
-    message:''
+    message:'',
+    image:''
   }
 }
 

@@ -51,27 +51,25 @@
 					<ul>
 
 						<li *ngFor="let employee of employeeList">
-						
+								<!-- getUrl({{employee.image}});
+								 -->
 							<div class="list-box-listing">
-								<div class="list-box-listing-img"><a href="#"><img src="/assets/images/listing-item-01.jpg" alt=""></a></div>
+									
+								<div class="list-box-listing-img"><a href="#"><img [src] = "imgsrc | async" alt=""></a></div>
+							
 								<div class="list-box-listing-content">
 									<div class="inner">
 										<h3><a href="#">{{employee.Category}}</a></h3>
 										<span>{{employee.title}}</span>
 										<div class="star-rating" data-rating="3.5">
 											<div class="rating-counter">{{employee.Description}}</div>
+											<div class="rating-counter">{{employee.image}}</div>
+										
 										</div>
 									</div>
 								</div>
 								<div class="buttons-to-right">
-										<!-- <a class="button gray">
-											<i class="sl sl-icon-note" (click)="onEdit(employee)"></i> Edit
-										</a>
-										<a class="button gray">
-											<i class="sl sl-icon-close" (click)="onDelete(employee.$key)"></i> Delete
-										</a>
-										 -->
-										<a class="button gray " (click)="onEdit(employee)">
+										<a  class="button gray " (click)="onEdit(employee)">
 												<i class="fa fa-pencil-square-o" ></i>
 											  Edit</a>
 										<a class="button gray" (click)="onDelete(employee.$key)">

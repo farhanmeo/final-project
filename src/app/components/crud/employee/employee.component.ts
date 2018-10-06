@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { EmployeeService } from '../shared/employee.service';
-
+import { EmployeeService } from '../shared/list.service';
 import { NgForm } from '@angular/forms'
 // import { ToastrService } from 'ngx-toastr';
 @Component({
@@ -36,7 +35,9 @@ alert('Submitted Succcessfully Employee Register');
       salary: 0,
       Category: '',
       Description: '',
-      title: ''
+      title: '',
+      message:'',
+      image:''
     }
   }
 
