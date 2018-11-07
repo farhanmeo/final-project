@@ -161,13 +161,11 @@
           
           <div class="tab-content" id="tab1" style="display: none;">
             <form method="post" class="login">
-    
-            <p class="form-row form-row-wide">
+  
+              <p class="form-row form-row-wide">
               <label for="username">Username:
               <i class="im im-icon-Male"></i>
-              <!-- <input type="text" class="input-text" name="username" value="" /> -->
-              <input type="text" class="form-control" name="email" placeholder="Username" [(ngModel)]="email" [ngModelOptions]="{standalone: true}">
-  
+              <input type="text" class="form-control" name="email" placeholder="Username" [(ngModel)]="email" [ngModelOptions]="{standalone: true}">  
             </label>
             </p>
     
@@ -257,7 +255,7 @@
   
   <!-- Banner
   ================================================== -->
-  <div class="main-search-container" data-background-image="assets/images/main-search-background-01.jpg">
+  <div class="main-search-container dark-overlay" data-background-image="assets/images/main-search-background-01.jpg">
     <div class="main-search-inner">
   
       <div class="container">
@@ -280,10 +278,12 @@
               </div>
   
               <div class="main-search-input-item">
-                <select data-placeholder="All Categories" class="chosen-select" >
+                <select data-placeholder="All Categories" >
+                <!-- class="chosen-select" > -->
+                  <!-- <option  label="Select">Select Category</option>	 -->
                   <option  label="Select">Select Category</option>	
-                  <option *ngFor="let employee of employeeList">{{employee.Category}}</option>
-                </select>
+                  <option *ngFor="let cat of cats">{{cat.Category}}</option>
+                          </select>
               </div>
               <!-- <div class="col-md-6">
                 <h5>Category</h5>
@@ -305,6 +305,102 @@
     </div>
   </div>
   
+  <div class="container">
+    <div class="row">
+  
+      <div class="col-md-12">
+        <h3 class="headline centered margin-top-75">
+          Browse Categories
+        </h3>
+      </div>
+  
+    </div>
+  </div>
+  
+  
+  <!-- Category Boxes -->
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="categories-boxes-container margin-top-5 margin-bottom-30">
+          <!-- Box -->
+          <a *ngFor="let cat of cats" href="listings-list-with-sidebar.html" class="category-small-box">
+            <i class="fa fa-bars"></i>            
+            <h4>{{cat.Category}}</h4>
+          </a>
+          <!-- <img src="{{cat.image}}" alt="">   -->
+  
+  
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Category Boxes / End -->
+    <!-- Recent Blog Posts -->
+    <section class="fullwidth border-top margin-top-70 padding-top-75 padding-bottom-75" data-background-color="#fff">
+      <div class="container">
+    
+        <div class="row">
+          <div class="col-md-12">
+            <h3 class="headline centered margin-bottom-45">
+              Featured Ads
+            </h3>
+          </div>
+        </div>
+    
+        <div class="row">
+          <!-- Blog Post Item -->
+          <!-- <div *ngFor="let ad of ads" class="col-md-3" >
+            <a href="pages-blog-post.html" class="blog-compact-item-container">
+              <div class="blog-compact-item">
+                <img src="assets/images/blog-compact-post-01.jpg" alt="">
+                <span class="blog-item-tag">Tips</span>
+                <div  class="blog-compact-item-content">
+                  <ul class="blog-post-tags">
+                    <li>{{ad.Category}}</li>
+                  </ul>
+                  <h3>{{ad.title}}</h3>
+                  <p>{{ad.Description}}</p>
+                </div>
+              </div>
+            </a>
+          </div> -->
+          <!-- Blog post Item / End -->
+          <!-- Listing Item -->
+          
+          <div *ngFor="let ad of ads" class="col-md-3">
+            
+            <a routerLink="/ad-details" class="listing-item-container" (click)="employeeService.setAdd(ad)">
+              <div class="listing-item">
+                <img src="{{ad.url}}" alt="">
+  
+                <!-- <div class="listing-badge now-open">Now Open</div> -->
+                
+                <div class="listing-item-content">
+                  <span class="tag">{{ad.Category}}</span>
+                  <h3>{{ad.title}} <i class="verified-icon"></i></h3>
+                  <!-- <span>{{ad.Description}}</span> -->
+                </div>
+                <!-- <span class="like-icon"></span> -->
+              </div>
+              <!-- <div class="star-rating" data-rating="3.5">
+                <div class="rating-counter">(12 reviews)</div>
+              </div> -->
+            </a>
+          </div>
+          <!-- Listing Item / End -->
+  
+    
+          <div class="col-md-12 centered-content">
+            <a href="pages-blog.html" class="button border margin-top-10">View Ads</a>
+          </div>
+    
+        </div>
+    
+      </div>
+    </section>
+    <!-- Recent Blog Posts / End -->
+    
   
   <!-- Content
   ================================================== -->
@@ -326,9 +422,8 @@
   <div class="fullwidth-carousel-container margin-top-25">
     <div class="fullwidth-slick-carousel category-carousel">
   
-        <li *ngFor="let employee of employeeList">
-      <div class="fw-carousel-item">
-                <!-- this (first) box will be hidden under 1680px resolution -->
+      <!-- <div class="fw-carousel-item">
+                this (first) box will be hidden under 1680px resolution
         <div class="category-box-container half">
           <a href="listings-half-screen-map-grid-1.html" class="category-box" data-background-image="../../../assets/images/category-box-01.jpg">					
             <div class="category-box-content">
@@ -338,51 +433,27 @@
             <span class="category-box-btn">Browse</span>
           </a>
         </div>  
-        <div class="category-box-container half">
-          <!-- <a href="listings-half-screen-map-grid-1.html" class="category-box" data-background-image="../../../assets/images/category-box-02.jpg">
-           -->
-           <a href="listings-half-screen-map-grid-1.html" class="category-box" data-background-image="../../../assets/images/category-box-01.jpg">					
-            <!-- <img [src] = "imgsrc | async" alt=""> -->
-							
+        <div  class="category-box-container half">
+           <a   href="listings-half-screen-map-grid-1.html" class="category-box" data-background-image="../../../assets/images/category-box-01.jpg">					
             <div class="category-box-content">
-              <h3>{{employee.username}}</h3>
-              <span>{{employee.email}}</span>
-              <span>{{employee.password}}</span>
-            </div>
+              <h3 >All Categories</h3>
+             </div>
             <span class="category-box-btn">Browse</span>
           </a>
         </div>
-      </div>
-        </li>
-        <div class="category-box-container half">
-            <a href="listings-half-screen-map-grid-1.html" class="category-box" data-background-image="../../../assets/images/category-box-02.jpg">					
-              <div class="category-box-content">
-                <h3>Hotels</h3>
+      </div> -->
+        <div *ngFor="let pop of pops" class="category-box-container half">
+            <a  href="listings-half-screen-map-grid-1.html" class="category-box dark-overlay" data-background-image="assets/images/category-box-02.jpg">					
+              <div  class="category-box-content">
+                <h3>{{pop.Category}}</h3>
                 <span>64 listings</span>
               </div>
               <span class="category-box-btn">Browse</span>
             </a>
-          </div>  
-      <!-- Item -->
-        <!-- <div class="fw-carousel-item">
-        <div class="category-box-container">
-          <a href="listings-half-screen-map-grid-1.html" class="category-box" data-background-image="../../../assets/images/category-box-03.jpg">
-            <div class="category-box-content">
-              <h3>{{employee.Category}}</h3>
-              <span>67 listings</span>
-            </div>
-            <span class="category-box-btn">Browse</span>
-          </a>
-        </div>
-      </div>
-      </li> -->
-  
+          </div>   
     </div>
   </div>
-  <!-- Categories Carousel / End -->
-  
-  
-  
+  <!-- Categories Carousel / End -->  
   <!-- Fullwidth Section -->
   <section class="fullwidth margin-top-65 padding-top-75 padding-bottom-70" data-background-color="#f8f8f8">
   
@@ -587,83 +658,6 @@
   <!-- Info Section / End -->
   
   
-  <!-- Recent Blog Posts -->
-  <section class="fullwidth border-top margin-top-70 padding-top-75 padding-bottom-75" data-background-color="#fff">
-    <div class="container">
-  
-      <div class="row">
-        <div class="col-md-12">
-          <h3 class="headline centered margin-bottom-45">
-            From The Blog
-          </h3>
-        </div>
-      </div>
-  
-      <div class="row">
-        <!-- Blog Post Item -->
-        <div class="col-md-4">
-          <a href="pages-blog-post.html" class="blog-compact-item-container">
-            <div class="blog-compact-item">
-              <img src="assets/images/blog-compact-post-01.jpg" alt="">
-              <span class="blog-item-tag">Tips</span>
-              <div class="blog-compact-item-content">
-                <ul class="blog-post-tags">
-                  <li>22 August 2017</li>
-                </ul>
-                <h3>Hotels for All Budgets</h3>
-                <p>Sed sed tristique nibh iam porta volutpat finibus. Donec in aliquet urneget mattis lorem. Pellentesque pellentesque.</p>
-              </div>
-            </div>
-          </a>
-        </div>
-        <!-- Blog post Item / End -->
-  
-        <!-- Blog Post Item -->
-        <div class="col-md-4">
-          <a href="pages-blog-post.html" class="blog-compact-item-container">
-            <div class="blog-compact-item">
-              <img src="assets/images/blog-compact-post-02.jpg" alt="">
-              <span class="blog-item-tag">Tips</span>
-              <div class="blog-compact-item-content">
-                <ul class="blog-post-tags">
-                  <li>18 August 2017</li>
-                </ul>
-                <h3>The 50 Greatest Street Arts In London</h3>
-                <p>Sed sed tristique nibh iam porta volutpat finibus. Donec in aliquet urneget mattis lorem. Pellentesque pellentesque.</p>
-              </div>
-            </div>
-          </a>
-        </div>
-        <!-- Blog post Item / End -->
-  
-        <!-- Blog Post Item -->
-        <div class="col-md-4">
-          <a href="pages-blog-post.html" class="blog-compact-item-container">
-            <div class="blog-compact-item">
-              <img src="assets/images/blog-compact-post-03.jpg" alt="">
-              <span class="blog-item-tag">Tips</span>
-              <div class="blog-compact-item-content">
-                <ul class="blog-post-tags">
-                  <li>10 August 2017</li>
-                </ul>
-                <h3>The Best Cofee Shops In Sydney Neighborhoods</h3>
-                <p>Sed sed tristique nibh iam porta volutpat finibus. Donec in aliquet urneget mattis lorem. Pellentesque pellentesque.</p>
-              </div>
-            </div>
-          </a>
-        </div>
-        <!-- Blog post Item / End -->
-  
-        <div class="col-md-12 centered-content">
-          <a href="pages-blog.html" class="button border margin-top-10">View Blog</a>
-        </div>
-  
-      </div>
-  
-    </div>
-  </section>
-  <!-- Recent Blog Posts / End -->
-  
   
   <!-- Footer
   ================================================== -->
@@ -731,7 +725,6 @@
   
   
   <!-- Back To Top Button -->
-  <div id="backtotop"><a href="#"></a></div>
   
   
   </div>

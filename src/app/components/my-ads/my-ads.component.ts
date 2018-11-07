@@ -36,23 +36,17 @@ export class MyAdsComponent implements OnInit {
 
 
   constructor( private db: AngularFireDatabase,public afAuth: AngularFireAuth,private employeeService: EmployeeService, private router: Router,private storage: AngularFireStorage) {
-   this.afAuth.authState.subscribe((auth) => {
-    this.uid = auth.uid;
-    this.data = db.list('/Posted_Ads/' + auth.uid + '/').valueChanges();
-    
-    this.data.subscribe(data => {
+    this.afAuth.authState.subscribe((auth) => {
+      this.uid = auth.uid;
+      this.data = db.list('/Posted_Ads/' + auth.uid + '/').valueChanges();
+      this.data.subscribe(data => {
       console.log(this.uid);
-    });
-    console.log(this.employeeList);
-    
-  });
+      });
+   });
   
+   
 
 }
-// getUrl(image: string, )
-// {
-//    this.imgsrc =  firebase.storage().ref().child('Posted-Add/images').getDownloadURL()
-//}
    ngOnInit() {
     var x = this.employeeService.getData();
     x.snapshotChanges().subscribe(item => {
@@ -61,13 +55,10 @@ export class MyAdsComponent implements OnInit {
         var y = element.payload.toJSON();
         y["$key"] = element.key;
         this.employeeList.push(y as Employee);
-         
-        console.log(this.employeeList[1])
+        console.log(this.employeeList)
       });
     });
-  
-    this.imgsrc =  firebase.storage().ref().child('Posted-Add/images').getDownloadURL()  
- }
+  }
   onEdit(emp: Employee) {
     this.employeeService.selectedEmployee = Object.assign({}, emp);
     

@@ -19,6 +19,8 @@ import { UploadFormComponent } from './components/uploads/upload-form/upload-for
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { UsersListComponent } from './components/users-list/users-list.component';
+import { AdDetailsComponent } from './components/ad-details/ad-details.component' ;
+
 const routes: Routes = [
   { path: 'add-listing', component: AddlistingComponent },
  
@@ -54,6 +56,7 @@ const routes: Routes = [
   { path: 'employees', component: EmployeesComponent },
   { path: 'list', component: EmployeeListComponent },
   { path: 'upload', component: UploadFormComponent }, 
+  { path: 'ad-details', component: AdDetailsComponent }, 
 ];
 
 

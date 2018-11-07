@@ -11,7 +11,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { LoginComponent } from './components/login/login.component';
 import { IndexComponent } from './components/index/index.component';
 import { AddlistingComponent } from './components/addlisting/addlisting.component';
-import {HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { BookingComponent } from './components/booking/booking.component';
 import { ReviewsComponent } from './components/reviews/reviews.component';
 import { BookmarksComponent } from './components/bookmarks/bookmarks.component';
@@ -32,9 +32,11 @@ import { UploadFormComponent } from './components/uploads/upload-form/upload-for
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { UsersListComponent } from './components/users-list/users-list.component';
-import { FlexLayoutModule } from '@angular/flex-layout' ;
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { AdDetailsComponent } from './components/ad-details/ad-details.component';
+
 @NgModule({
-  
+
   declarations: [
     AppComponent,
     DashboardComponent,
@@ -54,24 +56,26 @@ import { FlexLayoutModule } from '@angular/flex-layout' ;
     UploadFormComponent,
     AdminDashboardComponent,
     AdminComponent,
-    UsersListComponent
- ],
- imports: [
-  
-    AppRoutingModule,
+    UsersListComponent,
+    AdDetailsComponent
+  ],
+  imports: [
+
     BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
     ReactiveFormsModule,
     FormsModule,
     //Firebase Database
-     AngularFireModule.initializeApp(environment.firebaseConfig),
-     AngularFireDatabaseModule,
-     AngularFireAuthModule,
-     HttpClientModule,
-     BrowserAnimationsModule,
-     AngularFireStorageModule,
-     FlexLayoutModule,
- 
-    
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
+    HttpClientModule,
+    AngularFireStorageModule,
+    FlexLayoutModule,
+
+
+
   ],
   providers: [],
   bootstrap: [AppComponent]

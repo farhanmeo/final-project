@@ -1,24 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
-// import * as firebase from 'firebase/app';
 import { ActivatedRoute, Router } from '@angular/router';
 import 'rxjs/add/observable/throw';
-
-// import { AdService, AdListing } from './ad.service';
-import { Validators, FormGroup, FormBuilder } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
 
 import { Employee } from '../crud/shared/list.model';
 import { EmployeeService } from '../crud/shared/list.service';
 import { NgIf } from '@angular/common';
-import firebase = require('firebase');
-
+import {AdDetailsComponent} from '../ad-details/ad-details.component';
 @Component({
   selector: 'app-index',
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.css'],
-  providers: [EmployeeService]
+  providers: [EmployeeService, AdDetailsComponent],
+   
+
 
 })
 export class IndexComponent implements OnInit {
@@ -31,31 +27,42 @@ export class IndexComponent implements OnInit {
   employeeList: Employee[];
   imgsrc: Promise<any>;
 
+  cats: any[];
+  pops: any[];
+  ads: any[];
+  adInfo: any[];
+  d: any;
 
-  constructor(private employeeService: EmployeeService,private db: AngularFireDatabase, public afAuth: AngularFireAuth, private router: Router) {
+  constructor(private adDetail: AdDetailsComponent,private employeeService: EmployeeService,private db: AngularFireDatabase, public afAuth: AngularFireAuth, private router: Router) {
     db.list('/users').valueChanges().subscribe(users => {
       this.users = users;
-      console.log(this.users);
-
     });
+    db.list('/Category').valueChanges().subscribe(cats => {      
+      this.cats = cats;
+    });
+    db.list('/Category').valueChanges().subscribe(pops => {      
+      this.pops = pops;
+    });
+    db.list('Posted_Ads/Ic0Cfy3AsWYsL5PumEJLfrQZY523').valueChanges().subscribe(ads => {      
+      this.ads = ads;
+    });
+ 
   }
-  ngOnInit() {
-    var x = this.employeeService.getData();
+     ngOnInit() {
+            this.d = "farhan"
+    var x = this.employeeService.getCategory();
     x.snapshotChanges().subscribe(item => {
       this.employeeList = [];
       item.forEach(element => {
         var y = element.payload.toJSON();
         y["$key"] = element.key;
         this.employeeList.push(y as Employee);
-        console.log(this.employeeList)
       });
     });
-
-    this.imgsrc =  firebase.storage().ref().child('Posted-Add/images').getDownloadURL()
   }
   private addUsersData(email:string,password:string,username:String){
    const itemsRef = this.db.list('users');
-itemsRef.push({username: username, email: email,password:password });   
+   itemsRef.push({username: username, email: email,password:password });   
   }
 
   Register() {
@@ -65,17 +72,12 @@ itemsRef.push({username: username, email: email,password:password });
      alert('Registration Successful !');
       
     }).catch(err => {
-      
-      //      Observable.throw(Error || 'Internal Server error');
-            alert('Registration Failed !');
-            
+            //      Observable.throw(Error || 'Internal Server error');
+            alert('Registration Failed !');            
          });
   }
   login() {
 
-    console.log(this.email);
-    console.log(this.password);
-    console.log(this.afAuth.auth.currentUser);
     this.afAuth.auth.signInWithEmailAndPassword(this.email, this.password).then(x => {
 
       if(this.email=='admin@ijaarah.pk')
@@ -101,7 +103,4 @@ itemsRef.push({username: username, email: email,password:password });
   logout() {
     this.afAuth.auth.signOut();
   }
-
-
-
 }

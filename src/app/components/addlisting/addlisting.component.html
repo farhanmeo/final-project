@@ -2,7 +2,8 @@
 <!-- Content
 	================================================== -->
 	<div class="dashboard-content">
-		<form #employeeForm="ngForm" (ngSubmit)="onSubmit(employeeForm)">
+		<!-- Edit form / ad working -->
+		<!-- <form #employeeForm="ngForm" (ngSubmit)="onSubmit(employeeForm)">
 			<input type="hidden" name="$key" #$key="ngModel" [(ngModel)]="employeeService.selectedEmployee.$key">
 			<div class="form-group">
 			<label>Category</label>
@@ -23,7 +24,7 @@
 				<i class="fa fa-repeat"></i>
 				 Reset</button>
 			</div>
-			</form>
+			</form> -->
 		<!-- Titlebar -->
 		<div id="titlebar">
 			<div class="row">
@@ -113,7 +114,8 @@
 			  <!-- City -->
 			  <div class="col-md-6">
 				<h5>City</h5>
-				<select class="chosen-select-no-single" >
+				<select name="city" id="city" [(ngModel)]="employeeService.selectedEmployee.city" formControlName="city" class="form-control" #city>
+				<!-- <select  class="chosen-select-no-single" > -->
 				  <option label="blank">Select City</option>	
 				  <option>Karachi</option>
 				  <option>Hydrabad</option>
@@ -164,28 +166,26 @@
 		  <!-- Dropzone -->
 		  <div class="submit-section">
 				
-				<h1>Featured Photos</h1>
-				<input type="file" (change)="featuredPhotoSelected($event)"/><br>
+				<!-- <input type="file" (change)="detectFiles($event)"/><br>
 				 <img *ngIf = "(featuredPhotoStream | async)?.url1 as url" [src]="url" alt="Featured photo 1">
-				 <hr>
-				 <input type="file" (change)="featuredPhotoSelected($event)"/><br>
+				 <hr> -->
+					 <!-- <input type="file" (change)="featuredPhotoSelected($event)"/><br>
 				 <img *ngIf = "(featuredPhotoStream | async)?.url2 as url" [src]="url" alt="Featured photo 2">
-				 <hr>
+				 <hr> -->
 		
 
 
 
 <!-- Working Image code below -->
-	 <input #fileInput type="file" name="file" id ="profile-img" (change)="chooseFiles($event)"  />
-	<!-- <img id="profile-img-tag" style="height: 100px; width: 100px;" src=""> -->
+	 <!-- <input #fileInput type="file" name="file" id ="profile-img" (change)="chooseFiles($event)"  />
 	<img src="" id="profile-img-tag" width="200px" />
-	<img style="height: 400px; width: 400px;" [src] = "imgsrc | async">
+	<img style="height: 400px; width: 400px;" [src] = "imgsrc | async"> -->
  
 <!-- <Image Upload Code close> -->
 <!-- <Image Upload Code close> -->
 <!-- <Image Upload Code close> -->
 	
-	<script type="text/javascript">
+	<!-- <script type="text/javascript">
 			function readURL(input) {
 					if (input.files && input.files[0]) {
 							var reader = new FileReader();
@@ -199,12 +199,15 @@
 			$("#profile-img").change(function(){
 					readURL(this);
 			});
-	</script>
+	</script> -->
 	
 <!-- <Image Upload Code close> -->
 
-			<form action="/file-upload" class="dropzone" ></form>
-			
+			<form action="/file-upload" class="dropzone" >
+			</form>
+			<input class="dropzone" type="file" (change)="detectFiles($event)"/><br>
+			<!-- <img *ngIf = "(featuredPhotoStream | async)?.url1 as url" [src]="url" alt="Featured photo 1"> -->
+
 		</div>
 	
 		</div>
@@ -231,12 +234,10 @@
 		  <div class="row with-forms">
 	
 			<!-- Phone -->
-			<div class="col-md-4">
+			<!-- <div class="col-md-4">
 			  <h5>Phone <span>(optional)</span></h5>
-			  <!-- <input type="text"> -->
-			  <input type="text" class="form-control" placeholder="Phone Number" formControlName="phone" />
-	
-			</div>
+			  <input type="text" class="form-control" placeholder="Phone Number" formControlName="phone" />	
+			</div> -->
 	
 			<!-- Website 
 			<div class="col-md-4">
@@ -245,12 +246,10 @@
 			</div>
 			-->
 			<!-- Email Address -->
-			<div class="col-md-4">
+			<!-- <div class="col-md-4">
 			  <h5>E-mail <span>(optional)</span></h5>
-			  <!-- <input type="text"> -->
 			  <input type="text" class="form-control" placeholder="Your Email" formControlName="email" />
-	
-			</div>
+			</div> -->
 	
 		  </div>
 		  <!-- Row / End -->
@@ -283,7 +282,7 @@
 	
 	
 		  <!-- Checkboxes -->
-		  <h5 class="margin-top-30 margin-bottom-10">Amenities <span>(optional)</span></h5>
+		  <!-- <h5 class="margin-top-30 margin-bottom-10">Amenities <span>(optional)</span></h5>
 		  <div class="checkboxes in-row margin-bottom-20">
 		
 			<input id="check-a" type="checkbox" name="check">
@@ -310,7 +309,7 @@
 			<input id="check-h" type="checkbox" name="check">
 			<label for="check-h">Events</label>
 		
-		  </div>
+		  </div> -->
 		  <!-- Checkboxes / End -->
 	
 		</div>
@@ -331,7 +330,7 @@
 		  <div class="switcher-content">
 	
 			<!-- Day -->
-			<div class="row opening-day">
+			<!-- <div class="row opening-day">
 			  <div class="col-md-2"><h5>Monday</h5></div>
 			  <div class="col-md-5">
 				<select class="chosen-select" data-placeholder="Opening Time">
@@ -393,103 +392,25 @@
 				  <option>12 PM</option>
 				</select>
 			  </div>
-			</div>
+			</div> -->
 			<!-- Day / End -->
 	
 			<!-- Day -->
-			<div class="row opening-day js-demo-hours">
-			  <div class="col-md-2"><h5>Tuesday</h5></div>
-			  <div class="col-md-5">
-				<select class="chosen-select" data-placeholder="Opening Time">
-				  <!-- Hours added via JS (this is only for demo purpose) -->
-				</select>
-			  </div>
-			  <div class="col-md-5">
-				<select class="chosen-select" data-placeholder="Closing Time">
-				  <!-- Hours added via JS (this is only for demo purpose) -->
-				</select>
-			  </div>
-			</div>
 			<!-- Day / End -->
 	
 			<!-- Day -->
-			<div class="row opening-day js-demo-hours">
-			  <div class="col-md-2"><h5>Wednesday</h5></div>
-			  <div class="col-md-5">
-				<select class="chosen-select" data-placeholder="Opening Time">
-				  <!-- Hours added via JS (this is only for demo purpose) -->
-				</select>
-			  </div>
-			  <div class="col-md-5">
-				<select class="chosen-select" data-placeholder="Closing Time">
-				  <!-- Hours added via JS (this is only for demo purpose) -->
-				</select>
-			  </div>
-			</div>
 			<!-- Day / End -->
 	
 			<!-- Day -->
-			<div class="row opening-day js-demo-hours">
-			  <div class="col-md-2"><h5>Thursday</h5></div>
-			  <div class="col-md-5">
-				<select class="chosen-select" data-placeholder="Opening Time">
-				  <!-- Hours added via JS (this is only for demo purpose) -->
-				</select>
-			  </div>
-			  <div class="col-md-5">
-				<select class="chosen-select" data-placeholder="Closing Time">
-				  <!-- Hours added via JS (this is only for demo purpose) -->
-				</select>
-			  </div>
-			</div>
 			<!-- Day / End -->
 	
 			<!-- Day -->
-			<div class="row opening-day js-demo-hours">
-			  <div class="col-md-2"><h5>Friday</h5></div>
-			  <div class="col-md-5">
-				<select class="chosen-select" data-placeholder="Opening Time">
-				  <!-- Hours added via JS (this is only for demo purpose) -->
-				</select>
-			  </div>
-			  <div class="col-md-5">
-				<select class="chosen-select" data-placeholder="Closing Time">
-				  <!-- Hours added via JS (this is only for demo purpose) -->
-				</select>
-			  </div>
-			</div>
 			<!-- Day / End -->
 	
 			<!-- Day -->
-			<div class="row opening-day js-demo-hours">
-			  <div class="col-md-2"><h5>Saturday</h5></div>
-			  <div class="col-md-5">
-				<select class="chosen-select" data-placeholder="Opening Time">
-				  <!-- Hours added via JS (this is only for demo purpose) -->
-				</select>
-			  </div>
-			  <div class="col-md-5">
-				<select class="chosen-select" data-placeholder="Closing Time">
-				  <!-- Hours added via JS (this is only for demo purpose) -->
-				</select>
-			  </div>
-			</div>
 			<!-- Day / End -->
 	
 			<!-- Day -->
-			<div class="row opening-day js-demo-hours">
-			  <div class="col-md-2"><h5>Sunday</h5></div>
-			  <div class="col-md-5">
-				<select class="chosen-select" data-placeholder="Opening Time">
-				  <!-- Hours added via JS (this is only for demo purpose) -->
-				</select>
-			  </div>
-			  <div class="col-md-5">
-				<select class="chosen-select" data-placeholder="Closing Time">
-				  <!-- Hours added via JS (this is only for demo purpose) -->
-				</select>
-			  </div>
-			</div>
 			<!-- Day / End -->
 	
 		  </div>
@@ -517,16 +438,16 @@
 				<table id="pricing-list-container">
 				  <tr class="pricing-list-item pattern">
 					<td>
-					  <div class="fm-move"><i class="sl sl-icon-cursor-move"></i></div>
-					  <div class="fm-input pricing-name"><input type="text" placeholder="Title" /></div>
-					  <div class="fm-input pricing-ingredients"><input type="text" placeholder="Description" /></div>
+					  <!-- <div class="fm-move"><i class="sl sl-icon-cursor-move"></i></div> -->
+					  <!-- <div class="fm-input pricing-name"><input type="text" placeholder="Title" /></div> -->
+					  <!-- <div class="fm-input pricing-ingredients"><input type="text" placeholder="Description" /></div> -->
 					  <div class="fm-input pricing-price"><input type="text" placeholder="Price" data-unit="USD" /></div>
-					  <div class="fm-close"><a class="delete" href="#"><i class="fa fa-remove"></i></a></div>
+					  <!-- <div class="fm-close"><a class="delete" href="#"><i class="fa fa-remove"></i></a></div> -->
 					</td>
 				  </tr>
 				</table>
-				<a href="#" class="button add-pricing-list-item">Add Item</a>
-				<a href="#" class="button add-pricing-submenu">Add Category</a>
+				<!-- <a href="#" class="button add-pricing-list-item">Add Item</a>
+				<a href="#" class="button add-pricing-submenu">Add Category</a> -->
 			  </div>
 			</div>
 	
@@ -537,11 +458,15 @@
 		<!-- Section / End -->
 	
 	
-		<a href="#" class="button preview">Preview <i class="fa fa-arrow-circle-right"></i></a>
+		<!-- <a href="#" class="button preview">Preview </a> -->
+		<!-- <i class="fa fa-arrow-circle-right"></i> -->
+		<button  class="button preview"  > Preview</button>
+
+		<button  class="button preview"  (click)="uploadSingle()"> Submit</button>
+
 	
 	  </div>
 	</div>
-	<button type="button"  class="btn btn-common" (click)="addUsersData()"> Submit</button>
 	
 	</form>
 

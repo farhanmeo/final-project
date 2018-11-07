@@ -5,11 +5,23 @@ name : string;
 position : string;
 office : string;
 salary : number;
+//For message
+
+message: string;
+image:string;
+
 //for ad posting
 Category: string;
 Description: string;
 title : string;
-//For message
-message: string;
-image:string
+file?:File
+url?:String;
+fileName?:String
+status?:String
+keywords?:String
+city?:String
+
+constructor(file?:File) {
+    this.file = file;
+  }
 }

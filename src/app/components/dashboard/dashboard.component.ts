@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
-//import * as firebase from 'firebase/app';
+// import * as firebase from 'firebase/app';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -40,7 +40,7 @@ export class DashboardComponent implements OnInit {
     });
     this.afAuth.authState.subscribe((auth) => {
       this.uid = auth.uid;
-      this.data = db.list('/Posted_Ads/' + '-LIvIvK88UVr5LmAtHMY' + '/').valueChanges();
+      this.data = db.list('/Posted_Ads/' + this.uid + '/').valueChanges();
       
       this.data.subscribe(data => {
         // console.log(data);

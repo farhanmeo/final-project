@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 // import { AngularFireDatabase, AngularFireList  } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
-import * as firebase from 'firebase';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EmployeeService } from '../crud/shared/list.service';
 import { Employee } from '../crud/shared/list.model';
