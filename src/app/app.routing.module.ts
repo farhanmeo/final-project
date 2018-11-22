@@ -20,6 +20,8 @@ import { AdminDashboardComponent } from './components/admin-dashboard/admin-dash
 import { AdminComponent } from './components/admin/admin.component';
 import { UsersListComponent } from './components/users-list/users-list.component';
 import { AdDetailsComponent } from './components/ad-details/ad-details.component' ;
+import { CategoryComponent } from './components/category/category.component';
+import { AdsRequestComponent } from './components/ads-request/ads-request.component';
 
 const routes: Routes = [
   { path: 'add-listing', component: AddlistingComponent },
@@ -44,7 +46,8 @@ const routes: Routes = [
   children: [
      { path: 'admin-dashboard', component: AdminDashboardComponent },        
      { path: 'users-list', component: UsersListComponent },        
-
+     { path: 'categories', component: CategoryComponent },        
+     { path: 'ad-request', component: AdsRequestComponent },        
     ]
 },
 

@@ -1,0 +1,47 @@
+
+	<!-- Content
+	================================================== -->
+	<div class="dashboard-content">
+
+    <!-- Titlebar -->
+
+    <div id="titlebar">
+      <div class="row">
+        <div class="col-md-12">
+          <h2>Howdy, Tom!</h2>
+          <!-- Breadcrumbs -->
+          <nav id="breadcrumbs">
+            <ul>
+              <li><a href="#">Home</a></li>
+              <li>Dashboard</li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+
+    <!-- Notice -->
+    <div class="row">
+      <div class="col-md-12">
+        <div class="notification success closeable margin-bottom-30">
+          <p>Your listing <strong>Hotel Govendor</strong> has been approved!</p>
+          <a class="close" href="#"></a>
+        </div>
+      </div>
+        
+    </div>
+  <div class="container" *ngFor="let category of categories">
+    <div class="row">
+      <h4>{{category.Category}}</h4>
+    </div>
+    <button (click)="addCategory(farhan)">Add</button>
+  </div>
+    <!-- Content -->
+   
+
+
+  </div>
+  <!-- Content / End -->
+
+
+

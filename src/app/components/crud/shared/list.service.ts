@@ -8,6 +8,7 @@ var data = [];
 export interface data{
   ad: string[]
 }
+
 @Injectable()
 export class EmployeeService {
   d  = []
@@ -28,6 +29,8 @@ export class EmployeeService {
   employeeList: AngularFireList<any>;
   message: AngularFireList<any>;
   category: AngularFireList<any>;
+  booking: AngularFireList<any>;
+
   uid: any;
   data: Observable<any[]>;
 
@@ -42,12 +45,12 @@ export class EmployeeService {
     });
 
   }
-
+  ngOnInit() {
+  }
   getData() {
     this.message = this.firebase.list('Messages');
+    this.booking = this.firebase.list('booking')
     this.category = this.firebase.list('Category');
-
-
     this.employeeList = this.firebase.list('Posted_Ads/' + this.uid);
     return this.employeeList;
   }
@@ -87,18 +90,21 @@ export class EmployeeService {
       message: employee.message
     });
   }
-  insertBooking() {
-    this.message.push({
-      name: "employee.name",
-      //Category: employee.Category,
-      message: "employee.message"
+  insertBooking(pTime:string,pDate:string,rTime:string,rDate:string) {
+    this.booking.push({
+      pickTime: pTime,
+      pickData:pDate,
+      returnTime:rTime,
+      returnDate:rDate
     });
+  console.log(this.message);
+  
   }
 
 
   insertCategory(employee: Employee) {
     this.category.push({
-      Category: employee.Category,
+      name: "testng"
     });
   }
 

@@ -16,11 +16,8 @@ import { BookingComponent } from './components/booking/booking.component';
 import { ReviewsComponent } from './components/reviews/reviews.component';
 import { BookmarksComponent } from './components/bookmarks/bookmarks.component';
 import { ProfileComponent } from './components/profile/profile.component';
-// import { RouterModule, Routes } from '@angular/router';
-//for image upload
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-//import { MatProgressBarModule, MatButtonModule } from '@angular/material';
 import { AngularFireStorageModule } from 'angularfire2/storage';
 import { MessagesComponent } from './components/messages/messages.component';
 import { MyAdsComponent } from './components/my-ads/my-ads.component';
@@ -34,7 +31,9 @@ import { AdminComponent } from './components/admin/admin.component';
 import { UsersListComponent } from './components/users-list/users-list.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AdDetailsComponent } from './components/ad-details/ad-details.component';
-
+import { JwSocialButtonsModule } from 'jw-angular-social-buttons';
+import { CategoryComponent } from './components/category/category.component';
+import { AdsRequestComponent } from './components/ads-request/ads-request.component';
 @NgModule({
 
   declarations: [
@@ -57,7 +56,9 @@ import { AdDetailsComponent } from './components/ad-details/ad-details.component
     AdminDashboardComponent,
     AdminComponent,
     UsersListComponent,
-    AdDetailsComponent
+    AdDetailsComponent,
+    CategoryComponent,
+    AdsRequestComponent
   ],
   imports: [
 
@@ -73,7 +74,7 @@ import { AdDetailsComponent } from './components/ad-details/ad-details.component
     HttpClientModule,
     AngularFireStorageModule,
     FlexLayoutModule,
-
+    JwSocialButtonsModule, 
 
 
   ],

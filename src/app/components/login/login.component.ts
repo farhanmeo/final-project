@@ -37,7 +37,9 @@ export class LoginComponent implements OnInit {
   uid;
   data;
   viewData;
-  constructor(private db: AngularFireDatabase, public afAuth: AngularFireAuth, private router: Router, public route: ActivatedRoute,private employeeService: EmployeeService) {
+  constructor(private db: AngularFireDatabase, 
+    public afAuth: AngularFireAuth, private router: Router, public route: ActivatedRoute,
+    private employeeService: EmployeeService) {
     // db.list('/users').valueChanges().subscribe(users => {
     //   this.email = users;
     //   console.log(this.email);

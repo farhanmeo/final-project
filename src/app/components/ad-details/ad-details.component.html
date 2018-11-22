@@ -236,13 +236,15 @@
     <div class="clearfix"></div>
     <!-- Header Container / End -->
     
-    
     <!-- Slider
     ================================================== -->
     <div *ngFor="let ad of ads" class="listing-slider mfp-gallery-container margin-bottom-0">
-        
-          <img class="item mfp-gallery" src="{{ad.url}}" alt="" width="1300px" height="200px">
-      
+
+   <tr>
+   <td><img class="item mfp-gallery" src="{{ad.url}}" alt="" width="1300px" height="200px"></td>
+   <td><img class="item mfp-gallery" src="{{ad.url}}" alt="" width="1300px" height="200px"></td>
+   <td><img class="item mfp-gallery" src="{{ad.url}}" alt="" width="1300px" height="200px"></td>   
+   </tr>
         <!-- 
                 <a href="assets/images/single-listing-01.jpg" :style="{ data-background-image: 'url('+ad.url+')' }"  class="item mfp-gallery" title="Title 1"></a>
       <a href="assets/images/single-listing-02.jpg" data-background-image="assets/images/single-listing-02.jpg" class="item mfp-gallery" title="Title 3"></a>
@@ -449,7 +451,7 @@
         
     
           <!-- Opening Hours -->
-          <div class="boxed-widget opening-hours margin-top-35">
+          <!-- <div class="boxed-widget opening-hours margin-top-35">
             <div class="listing-badge now-open">Now Open</div>
             <h3><i class="sl sl-icon-clock"></i> Opening Hours</h3>
             <ul>
@@ -461,7 +463,7 @@
               <li>Saturday <span>9 AM - 3 PM</span></li>
               <li>Sunday <span>Closed</span></li>
             </ul>
-          </div>
+          </div> -->
           <!-- Opening Hours / End -->
     
     
@@ -505,11 +507,21 @@
             <span>159 people bookmarked this place</span>
     
               <!-- Share Buttons -->
-              <ul class="share-buttons margin-top-40 margin-bottom-0">
-                <li><a class="fb-share" href="#"><i class="fa fa-facebook"></i> Share</a></li>
+              <ul class="share-buttons margin-top-40 margin-bottom-0" *ngFor="let ad of ads">
+                <!-- <li><a class="fb-share" href="#"><i class="fa fa-facebook"></i> Share</a></li>
                 <li><a class="twitter-share" href="#"><i class="fa fa-twitter"></i> Tweet</a></li>
-                <li><a class="gplus-share" href="#"><i class="fa fa-google-plus"></i> Share</a></li>
-                <!-- <li><a class="pinterest-share" href="#"><i class="fa fa-pinterest-p"></i> Pin</a></li> -->
+                <li><a class="gplus-share" href="#"><i class="fa fa-google-plus"></i> Share</a></li> -->
+                     <li>
+                        <fb-like class="fa fa-facebook" url="{{ad.url}}">
+                        </fb-like>
+                     </li>
+                     <li><google-plus class="gplus-share" url={{ad.url}}></google-plus></li>
+                     <li><tweet class="twitter-share" url={{ad.url}}></tweet></li>
+                      
+                      
+                      <!-- <linkedin-share url={{ad.url}}></linkedin-share>
+                      <pin-it url={{ad.url}} media={{ad.url}}></pin-it> -->
+              
               </ul>
               <div class="clearfix"></div>
           </div>
