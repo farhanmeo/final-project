@@ -9176,6 +9176,7 @@ span.like-icon {
 	position: relative;
 	z-index: 10;
 	height: 100%;
+	width: 100%;
 	margin-left: 260px;
 }
 

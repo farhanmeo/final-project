@@ -30,8 +30,8 @@ export class AdDetailsComponent implements OnInit {
   tabChange(val){
     this.change = val
   }
-  booking(pTime:string,pDate:string,rTime:string,rDate:string){
+  booking(pTime:string,pDate:string,rTime:string,rDate:string, name:string, phone:number){
     console.log("i am here =>", pTime,pDate,rTime,rDate);
-    this.es.insertBooking(pTime,pDate,rTime,rDate);
+    this.es.insertBooking(pTime,pDate,rTime,rDate, name, phone);
   }
 }

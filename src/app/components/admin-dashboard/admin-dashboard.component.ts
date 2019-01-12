@@ -42,6 +42,7 @@ resetForm(employeeForm?: NgForm) {
     employeeForm.reset();
   this.employeeService.selectedEmployee = {
     $key: null,
+    uid:'',
     name: '',
     position: '',
     office: '',

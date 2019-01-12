@@ -8,13 +8,14 @@ import { Employee } from '../crud/shared/list.model';
 import { EmployeeService } from '../crud/shared/list.service';
 import { NgIf } from '@angular/common';
 import {AdDetailsComponent} from '../ad-details/ad-details.component';
+
 @Component({
   selector: 'app-index',
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.css'],
   providers: [EmployeeService, AdDetailsComponent],
    
-
+     
 
 })
 export class IndexComponent implements OnInit {
@@ -30,6 +31,7 @@ export class IndexComponent implements OnInit {
   cats: any[];
   pops: any[];
   ads: any[];
+  approvedAds: any[] = [];
   adInfo: any[];
   d: any;
 
@@ -43,9 +45,24 @@ export class IndexComponent implements OnInit {
     db.list('/Category').valueChanges().subscribe(pops => {      
       this.pops = pops;
     });
-    db.list('Posted_Ads/Ic0Cfy3AsWYsL5PumEJLfrQZY523').valueChanges().subscribe(ads => {      
+    db.list('Posted_Ads/').valueChanges().subscribe(ads => {      
       this.ads = ads;
+      if(this.ads != undefined){
+        this.ads.map(x => {
+          console.log(x);          
+          if(x.status == "true"){
+            console.log("in map", x);
+          this.approvedAds.push(x);
+          }
+        })  
+      }
+      console.log("Here i m", this.ads);
     });
+
+//     firebase.database().ref('Posted_Ads/')
+//     DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
+// ref.child("messages").orderByChild("sender").equals("salam")
+//     .addListenerForSingleValueEvent(new ValueEventListener({...}));
  
   }
      ngOnInit() {

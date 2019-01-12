@@ -34,6 +34,7 @@ import { AdDetailsComponent } from './components/ad-details/ad-details.component
 import { JwSocialButtonsModule } from 'jw-angular-social-buttons';
 import { CategoryComponent } from './components/category/category.component';
 import { AdsRequestComponent } from './components/ads-request/ads-request.component';
+
 @NgModule({
 
   declarations: [

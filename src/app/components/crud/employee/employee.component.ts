@@ -29,6 +29,7 @@ alert('Submitted Succcessfully Employee Register');
       employeeForm.reset();
     this.employeeService.selectedEmployee = {
       $key: null,
+      uid:'',
       name: '',
       position: '',
       office: '',

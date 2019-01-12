@@ -421,9 +421,17 @@
     
           <!-- Book Now -->
           <div class="boxed-widget booking-widget margin-top-35">
-            <h3><i class="fa fa-calendar-check-o "></i> Book a Table</h3>
+            <h3><i class="fa fa-calendar-check-o "></i> Book Now</h3>
             <div class="row with-forms  margin-top-0">
     
+              <div class="col-lg-12 col-md-12">
+                <span>Name</span>  
+                <input type="text" name="name" placeholder="Name" #name>
+              </div>
+              <div class="col-lg-12 col-md-12">
+                <span>Phone Number</span>  
+                <input type="number" name="phone" placeholder="Phone" #phone>
+              </div>
 
               <div class="col-lg-12 col-md-12">
                 <span>Pickup Time</span>  
@@ -445,7 +453,7 @@
             </div>
             
             <!-- progress button animation handled via custom.js -->
-            <button class="button book-now fullwidth margin-top-5" (click)="booking(ptime.value, pdate.value, rtime.value,rdate.value)">Book Now</button>
+            <button class="button book-now fullwidth margin-top-5" (click)="booking(ptime.value, pdate.value, rtime.value, rdate.value, name.value, phone.value)">Book Now</button>
           </div>
           <!-- Book Now / End -->
         

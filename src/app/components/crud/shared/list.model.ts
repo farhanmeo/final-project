@@ -5,6 +5,7 @@ name : string;
 position : string;
 office : string;
 salary : number;
+uid: string;
 //For message
 
 message: string;

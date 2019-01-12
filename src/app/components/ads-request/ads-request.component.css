@@ -1,0 +1,15 @@
+
+.sidealign{
+    padding-left: 300px !important;
+    background-color: whitesmoke;
+
+}
+
+.approveButton {
+    background-color: #368ff4;
+    color: white;
+}  
+.disApproveButton {
+    background-color: #ff493c;
+    color: white;
+} 

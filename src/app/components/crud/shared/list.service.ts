@@ -30,6 +30,8 @@ export class EmployeeService {
   message: AngularFireList<any>;
   category: AngularFireList<any>;
   booking: AngularFireList<any>;
+  isApprove: AngularFireList<any>;
+  
 
   uid: any;
   data: Observable<any[]>;
@@ -51,7 +53,8 @@ export class EmployeeService {
     this.message = this.firebase.list('Messages');
     this.booking = this.firebase.list('booking')
     this.category = this.firebase.list('Category');
-    this.employeeList = this.firebase.list('Posted_Ads/' + this.uid);
+    this.isApprove = this.firebase.list('Posted_Ads');
+    this.employeeList = this.firebase.list('Posted_Ads/');
     return this.employeeList;
   }
   getUser() {
@@ -90,12 +93,14 @@ export class EmployeeService {
       message: employee.message
     });
   }
-  insertBooking(pTime:string,pDate:string,rTime:string,rDate:string) {
+  insertBooking(pTime:string,pDate:string,rTime:string,rDate:string, name:string, phone:number) {
     this.booking.push({
       pickTime: pTime,
       pickData:pDate,
       returnTime:rTime,
-      returnDate:rDate
+      returnDate:rDate,
+      name:name,
+      phone:phone,
     });
   console.log(this.message);
   
@@ -126,6 +131,10 @@ export class EmployeeService {
       Description: employee.Description
     });
   }
+
+  // approveAdByAdmin(adToBeApproved: any){
+  //   this.isApprove.update()
+  // }
   deleteEmployee($key: string) {
     this.employeeList.remove($key);
   }
