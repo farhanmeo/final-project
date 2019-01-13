@@ -76,14 +76,17 @@ export class EmployeeService {
   }
 
   insertEmployee(employee: Employee) {
-    this.employeeList.push({
-      name: employee.name,
-      position: employee.position,
-      office: employee.office,
-      salary: employee.salary,
-      Category: employee.Category,
-      title: employee.title,
-      Description: employee.Description
+    console.log(employee);
+    
+   this.employeeList.push({
+      // name: employee.name,
+      // position: employee.position,
+      // office: employee.office,
+      // salary: employee.salary,
+      // title: employee.title,
+      // Description: employee.Description,
+     Category: employee.Category,
+
     });
   }
   insertMessage(employee: Employee) {
@@ -115,13 +118,13 @@ export class EmployeeService {
 
   updateEmployee(employee: Employee) {
     this.employeeList.update(employee.$key, {
-      name: employee.name,
-      position: employee.position,
-      office: employee.office,
-      salary: employee.salary,
       Category: employee.Category,
-      title: employee.title,
-      Description: employee.Description
+      // name: employee.name,
+      // position: employee.position,
+      // office: employee.office,
+      // salary: employee.salary,
+      // title: employee.title,
+      // Description: employee.Description
     });
   }
   updateAd(employee: Employee) {
@@ -131,10 +134,17 @@ export class EmployeeService {
       Description: employee.Description
     });
   }
-
-  // approveAdByAdmin(adToBeApproved: any){
-  //   this.isApprove.update()
-  // }
+  apprveAdByAdmin(employee: Employee) {
+    this.employeeList.update(employee.$key, {
+      status: "true",
+    });
+  }
+  disapprveAdByAdmin(employee: Employee) {
+    this.employeeList.update(employee.$key, {
+      status: "false",
+    });
+  }
+  
   deleteEmployee($key: string) {
     this.employeeList.remove($key);
   }

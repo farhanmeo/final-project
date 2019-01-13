@@ -5,30 +5,33 @@
   <div class="sidealign">
     <h1 align="center">Ads Request</h1>
     <br/>
-    <div *ngFor="let ad of pendingAds" class="col-md-3">
+    <div *ngFor="let ad of employeeList" >
+     
+      <div *ngIf="ad.status == 'pending'" class="col-md-3">
+           <!-- <a routerLink="/ad-details" class="listing-item-container" (click)="employeeService.setAdd(ad)"> -->
+            <div class="listing-item">
+                <img src="{{ad.url}}" alt="">            
+                <div class="listing-item-content">
+                  <span class="tag">{{ad.Category}}</span>
+                  <h3>{{ad.title}} <i class="verified-icon"></i></h3>
+                  <tr>
+                    <td>
+                        <button class="approveButton" (click)="onEdit(ad)">Approve</button>
+                    </td>
+                    <td>
+                        <button class="disApproveButton" color="warn" (click)="onEdit(ad)">Disapprove</button>
+                    </td>
+                  </tr>
             
-        <!-- <a routerLink="/ad-details" class="listing-item-container" (click)="employeeService.setAdd(ad)"> -->
-          <div class="listing-item">
-            <img src="{{ad.url}}" alt="">            
-            <div class="listing-item-content">
-              <span class="tag">{{ad.Category}}</span>
-              <h3>{{ad.title}} <i class="verified-icon"></i></h3>
-              <tr>
-                <td>
-                    <button class="approveButton" (click)="approved(ad)">Approve</button>
-                </td>
-                <td>
-                    <button class="disApproveButton" color="warn" (click)="disApproved(ad)">Disapprove</button>
-                </td>
-              </tr>
-        
-            </div>
-          </div>
-        <!-- </a> -->
+                </div>
+              </div>
+            <!-- </a> -->
+    
       </div>
+           </div>
   </div>
         
-  <div class="col-lg-12 col-md-12">
+  <div class="col-lg-12 col-md-12 sidealign">
       <div class="dashboard-list-box margin-top-0">
           <form #employeeForm="ngForm" (ngSubmit)="onSubmit(employeeForm)">
               <input type="hidden" name="$key" #$key="ngModel" [(ngModel)]="employeeService.selectedEmployee.$key">
@@ -46,10 +49,10 @@
               <div class="form-group">
               <button class="btn btn-default" type="submit" [disabled]="!employeeForm.valid">
                 <i class="fa fa-floppy-o"></i>
-                 Submit</button>
-              <button class="btn btn-default" type="button" (click)="resetForm(employeeForm)">
+                 Approve</button>
+              <button class="btn btn-default" type="button" (click)="onSubmitDisapprove(employeeForm)">
                 <i class="fa fa-repeat"></i>
-                 Reset</button>
+                 Disapprove</button>
               </div>
               </form>
         <h4>Active Listings</h4>
@@ -90,3 +93,4 @@
         </ul>
       </div>
     </div>
+    

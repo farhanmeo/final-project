@@ -63,13 +63,6 @@ export class MyAdsComponent implements OnInit {
     this.employeeService.selectedEmployee = Object.assign({}, emp);
     
   }
- 
-  onDelete(key: string) {
-    if (confirm('Are you sure to delete this record ?') == true) {
-      this.employeeService.deleteEmployee(key);
-      alert("Deleted Successfully Employee register");
-    }
-  }
   onSubmit(employeeForm: NgForm) {
     if (employeeForm.value.$key == null)
     this.employeeService.insertEmployee(employeeForm.value);
@@ -93,6 +86,12 @@ alert('Submitted Succcessfully Employee Register');
       title: '',
       message:'',
       image:''
+    }
+  }
+  onDelete(key: string) {
+    if (confirm('Are you sure to delete this record ?') == true) {
+      this.employeeService.deleteEmployee(key);
+      alert("Deleted Successfully Employee register");
     }
   }
 }
