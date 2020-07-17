@@ -7,11 +7,11 @@ import { Employee } from '../crud/shared/list.model';
 import { NgForm } from '@angular/forms'
 import { Router } from '@angular/router';
 import { Observable, forkJoin } from 'rxjs';
-import firebase = require('firebase');
+// import firebase = require('firebase');
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { getUrlScheme } from '@angular/compiler';
-//import * as firebase from 'firebase/app';
+// import * as firebase from 'firebase/app';
 
 // import firebase = require('firebase');
 //import firebase from 'firebase/app';
@@ -35,19 +35,19 @@ export class MyAdsComponent implements OnInit {
   // singleEvent$: Observable<Event>;
 
 
-  constructor( private db: AngularFireDatabase,public afAuth: AngularFireAuth,private employeeService: EmployeeService, private router: Router,private storage: AngularFireStorage) {
+  constructor(private db: AngularFireDatabase, public afAuth: AngularFireAuth, private employeeService: EmployeeService, private router: Router, private storage: AngularFireStorage) {
     this.afAuth.authState.subscribe((auth) => {
       this.uid = auth.uid;
       this.data = db.list('/Posted_Ads/' + auth.uid + '/').valueChanges();
       this.data.subscribe(data => {
-      console.log(this.uid);
+        console.log(this.uid);
       });
-   });
-  
-   
+    });
 
-}
-   ngOnInit() {
+
+
+  }
+  ngOnInit() {
     var x = this.employeeService.getData();
     x.snapshotChanges().subscribe(item => {
       this.employeeList = [];
@@ -58,25 +58,29 @@ export class MyAdsComponent implements OnInit {
         console.log(this.employeeList)
       });
     });
+    // document.getElementById('myads').scrollIntoView();
+
   }
-  onEdit(emp: Employee) {
+  onEdit(element, emp: Employee) {
     this.employeeService.selectedEmployee = Object.assign({}, emp);
-    
+
+    element.scrollIntoView();
   }
   onSubmit(employeeForm: NgForm) {
     if (employeeForm.value.$key == null)
-    this.employeeService.insertEmployee(employeeForm.value);
-  else
-    this.employeeService.updateAd(employeeForm.value);
-  this.resetForm(employeeForm);
-alert('Submitted Succcessfully Employee Register');  
-}
+      this.employeeService.insertEmployee(employeeForm.value);
+    else
+      this.employeeService.updateAd(employeeForm.value);
+    this.resetForm(employeeForm);
+    alert('Submitted Succcessfully Employee Register');
+  }
   resetForm(employeeForm?: NgForm) {
     if (employeeForm != null)
       employeeForm.reset();
     this.employeeService.selectedEmployee = {
       $key: null,
-      uid:'',
+      uid: '',
+      price: 0,
       name: '',
       position: '',
       office: '',
@@ -84,14 +88,20 @@ alert('Submitted Succcessfully Employee Register');
       Category: '',
       Description: '',
       title: '',
-      message:'',
-      image:''
+      message: '',
+      image: ''
     }
   }
   onDelete(key: string) {
-    if (confirm('Are you sure to delete this record ?') == true) {
+    if (confirm('Are you sure to delete this Ad ?') == true) {
       this.employeeService.deleteEmployee(key);
       alert("Deleted Successfully Employee register");
+    }
+  }
+  onDisable(key: string) {
+    if (confirm('Are you sure to disable this Ad ?') == true) {
+      this.employeeService.disableEmployee(key);
+      alert("Dsiable Successfully Employee register");
     }
   }
 }
